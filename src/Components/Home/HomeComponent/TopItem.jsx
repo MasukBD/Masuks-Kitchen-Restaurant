@@ -23,10 +23,22 @@ const TopItem = () => {
     return (
         <>
             <SectionTilte subheading={"Items Choose By Foodie People"} heading={"Most Popular Items"}></SectionTilte>
-            <div className='md:w-10/12 p-2 mx-auto mb-10 md:mb-16'>
+            <div className='md:w-11/12 p-2 mx-auto mb-10 md:mb-16'>
                 <Swiper
-                    slidesPerView={3}
-                    spaceBetween={30}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        540: {
+                            slidesPerView: 3,
+                            spaceBetween: 20
+                        },
+                        992: {
+                            slidesPerView: 4,
+                            spaceBetween: 30
+                        }
+                    }}
                     pagination={{
                         clickable: true,
                     }}
@@ -43,7 +55,7 @@ const TopItem = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                         <img className='' src={slide3} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Steck</h3></Link>
+                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Stack</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
                         <img className='' src={slide4} alt="" />
@@ -51,7 +63,7 @@ const TopItem = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                         <img className='' src={slide5} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-11 md:-mt-12 text-sm md:text-2xl text-white'>Sandwich</h3></Link>
+                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Sandwich</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
                         <img className='' src={slide6} alt="" />
@@ -66,7 +78,7 @@ const TopItem = () => {
                         <Link to=""><h2 className='text-lg absolute inset-0 text-white md:text-3xl font-semibold flex items-center hover:underline underline-offset-4 hover:text-warning justify-center gap-1'>Explore More <FaArrowRight></FaArrowRight></h2></Link>
                     </SwiperSlide>
                 </Swiper>
-            </div>
+            </div >
         </>
     );
 };
