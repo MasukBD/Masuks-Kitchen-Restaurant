@@ -4,6 +4,7 @@ import TopItem from './HomeComponent/TopItem';
 import ChefSays from './HomeComponent/ChefSays';
 import HomePageShortMenu from './HomeComponent/HomePageShortMenu';
 import HomePageContacts from './HomeComponent/HomePageContacts';
+import ChefRecomended from './HomeComponent/ChefRecomended';
 
 const Homepage = () => {
     return (
@@ -13,6 +14,7 @@ const Homepage = () => {
             <ChefSays></ChefSays>
             <HomePageShortMenu></HomePageShortMenu>
             <HomePageContacts></HomePageContacts>
+            <ChefRecomended></ChefRecomended>
         </div>
     );
 };

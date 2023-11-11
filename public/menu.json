@@ -105,9 +105,9 @@
     },
     {
         "_id": "642c155b2c4774f05c36ee81",
-        "name": "Tuna Niçoise",
-        "recipe": "Warm goats cheese and roasted vegetable salad with black olive tapenade crostini",
-        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
+        "name": "Tuna Fat Soup",
+        "recipe": "A classic dish with a crispy crust topped with savory sauce, cheese, and various delicious toppings for a satisfying meal.",
+        "image": "https://i.ibb.co/4PBs5dW/vegitable-salad-with-grild-chicken.jpg",
         "category": "offered",
         "price": 10.5
     },
@@ -146,8 +146,8 @@
     {
         "_id": "642c155b2c4774f05c36ee83",
         "name": "Chicken and Walnut Salad",
-        "recipe": "Pan roasted pork belly with gratin potato, braised Savoy cabbage, apples, thyme and calvados jus",
-        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-3-370x247.jpg",
+        "recipe": "Pan roasted pork belly with gratin potato, braised Savoy cabbage, apples, thyme and calvados juciy.",
+        "image": "https://i.ibb.co/5Bfgtbh/vegetable-chicken-salad-blue-plate.jpg",
         "category": "offered",
         "price": 13.5
     },
@@ -179,7 +179,7 @@
         "_id": "642c155b2c4774f05c36ee80",
         "name": "Roast Duck Breast",
         "recipe": "Roasted duck breast (served pink) with gratin potato and a griottine cherry sauce",
-        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-4-370x247.jpg",
+        "image": "https://i.ibb.co/8zfj2wr/fried-chicken-with-fish-sauce.jpg",
         "category": "offered",
         "price": 14.5
     },
@@ -401,9 +401,9 @@
     },
     {
         "_id": "642c155b2c4774f05c36ee82",
-        "name": "Escalope de Veau",
-        "recipe": "Pan roasted haddock fillet wrapped in smoked French bacon with pea purée and tomato and chive vinaigrette",
-        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
+        "name": "Deshi Fish Curry",
+        "recipe": "Tempting confections like cakes, pies, and pastries, providing a deliciously satisfying end to any meal.",
+        "image": "https://i.ibb.co/5Bfgtbh/vegetable-chicken-salad-blue-plate.jpg",
         "category": "offered",
         "price": 12.5
     },
