@@ -5,6 +5,8 @@ import ChefSays from './HomeComponent/ChefSays';
 import HomePageShortMenu from './HomeComponent/HomePageShortMenu';
 import HomePageContacts from './HomeComponent/HomePageContacts';
 import ChefRecomended from './HomeComponent/ChefRecomended';
+import Highlighted from './HomeComponent/Highlighted';
+import Reviews from './HomeComponent/Reviews';
 
 const Homepage = () => {
     return (
@@ -15,6 +17,8 @@ const Homepage = () => {
             <HomePageShortMenu></HomePageShortMenu>
             <HomePageContacts></HomePageContacts>
             <ChefRecomended></ChefRecomended>
+            <Highlighted></Highlighted>
+            <Reviews></Reviews>
         </div>
     );
 };
