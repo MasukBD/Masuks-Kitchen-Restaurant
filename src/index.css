@@ -5,3 +5,11 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+.active {
+    @apply text-warning font-semibold
+}
+
+.default {
+    @apply text-white font-semibold
+}

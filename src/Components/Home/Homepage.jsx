@@ -7,10 +7,12 @@ import HomePageContacts from './HomeComponent/HomePageContacts';
 import ChefRecomended from './HomeComponent/ChefRecomended';
 import Highlighted from './HomeComponent/Highlighted';
 import Reviews from './HomeComponent/Reviews';
+import { Helmet } from 'react-helmet-async';
 
 const Homepage = () => {
     return (
-        <div>
+        <>
+            <Helmet><title>Home || Masuk's Kitchen Restaurant</title></Helmet>
             <Banner></Banner>
             <TopItem></TopItem>
             <ChefSays></ChefSays>
@@ -19,7 +21,7 @@ const Homepage = () => {
             <ChefRecomended></ChefRecomended>
             <Highlighted></Highlighted>
             <Reviews></Reviews>
-        </div>
+        </>
     );
 };
 

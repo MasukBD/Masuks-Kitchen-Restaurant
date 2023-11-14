@@ -195,8 +195,8 @@
         "_id": "642c155b2c4774f05c36eeb0",
         "name": "Puree soups",
         "recipe": "Comforting, liquid-based dish made by simmering meats, vegetables, or legumes, offering warmth and nourishment in every spoonful.",
-        "image": "https://img.freepik.com/free-photo/front-view-delicious-soup-inside-white-plate-dark-surface_179666-34445.jpg?w=740&t=st=1699432131~exp=1699432731~hmac=e7c761078fae22e79abe69fcc5257a429aaab25455828a9d64445ee13288ada9",
-        "category": "soup",
+        "image": "https://i.ibb.co/5Bfgtbh/vegetable-chicken-salad-blue-plate.jpg",
+        "category": "salad",
         "price": 13.5
     },
     {
@@ -235,7 +235,7 @@
         "_id": "642c155b2c4774f05c36eeb3",
         "name": "Radhuni Halim Soup",
         "recipe": "Nourishing comfort food made by simmering ingredients like meats, vegetables, or grains in flavorful broth for a heartwarming meal.",
-        "image": "https://img.freepik.com/free-photo/lentil-soup-with-mixed-ingredients-herbs-white-bowl-with-spoon_114579-3083.jpg?w=740&t=st=1699432056~exp=1699432656~hmac=797d2ecb56aa6b69f3b82feb530af237e457f91fd4f51942d4b0fd3efc7be005",
+        "image": "https://i.ibb.co/x3ZxrQn/pasta.jpg",
         "category": "soup",
         "price": 9.5
     },
@@ -243,7 +243,7 @@
         "_id": "642c155b2c4774f05c36eeb5",
         "name": "Chinese Noodles Soup",
         "recipe": "Comforting, liquid-based dish made by simmering meats, vegetables, or legumes, offering warmth and nourishment in every spoonful.",
-        "image": "https://img.freepik.com/free-photo/homemade-vegetable-stew-with-organic-carrots-parsley-garnish-generated-by-ai_188544-55649.jpg?t=st=1699431957~exp=1699435557~hmac=42972f252a27827ee429ce76946d0751e734bce021eefb5c8f5af232fe4288ce&w=826",
+        "image": "https://i.ibb.co/5Bfgtbh/vegetable-chicken-salad-blue-plate.jpg",
         "category": "soup",
         "price": 9.5
     },
@@ -323,7 +323,7 @@
         "_id": "642c155b2c4774f05c36ee85",
         "name": "Tuna Niçoise",
         "recipe": "Warm goats cheese and roasted vegetable salad with black olive tapenade crostini",
-        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
+        "image": "https://i.ibb.co/x3ZxrQn/pasta.jpg",
         "category": "dessert",
         "price": 10.5
     },

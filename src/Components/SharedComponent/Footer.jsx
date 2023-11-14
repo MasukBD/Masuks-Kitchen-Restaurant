@@ -54,11 +54,11 @@ const Footer = () => {
                         <a className="link link-hover">Pricing</a>
                     </nav>
                     <nav>
-                        <header className="footer-title">Apps</header>
-                        <a className="link link-hover">Mac</a>
-                        <a className="link link-hover">Windows</a>
-                        <a className="link link-hover">iPhone</a>
-                        <a className="link link-hover">Android</a>
+                        <header className="footer-title">Subscribe</header>
+                        <form>
+                            <input required type="email" placeholder="Email" className="input input-bordered input-error w-full max-w-xs" />
+                            <button className='text-white p-2 bg-yellow-500 rounded-md my-3 font-semibold hover:bg-black'>Submit</button>
+                        </form>
                     </nav>
                 </footer>
             </div>
