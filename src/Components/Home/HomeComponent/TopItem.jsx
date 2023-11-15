@@ -75,7 +75,7 @@ const TopItem = () => {
                     </SwiperSlide>
                     <SwiperSlide className='relative'>
                         <img className='' src={slide1} alt="" />
-                        <Link to=""><h2 className='text-lg absolute inset-0 text-white md:text-3xl font-semibold flex items-center hover:underline underline-offset-4 hover:text-warning justify-center gap-1'>Explore More <FaArrowRight></FaArrowRight></h2></Link>
+                        <Link to="/menu"><h2 className='text-lg absolute inset-0 text-white md:text-3xl font-semibold flex items-center hover:underline underline-offset-4 hover:text-warning justify-center gap-1'>Explore More <FaArrowRight></FaArrowRight></h2></Link>
                     </SwiperSlide>
                 </Swiper>
             </div >

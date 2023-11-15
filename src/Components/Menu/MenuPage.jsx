@@ -22,45 +22,45 @@ const MenuPage = () => {
     const desertItems = menu.filter(item => item.category === 'dessert');
     return (
         <>
-            <Helmet><title>Menu || Masuk's Kitchen</title></Helmet>
+            <Helmet><title>Menu || Masuk's Kitchen Restaurant</title></Helmet>
             <SectionCover image={banner} heading={'Explore Our Menu'} subHeading={"Masuk's Kitchen is a culinary canvas where flavors dance harmoniously. Their menu is a symphony of diverse ingredients, each dish a masterpiece painted with passion and creativity."}></SectionCover>
 
             {/* popular items section  */}
             <>
                 <SectionTilte heading={"Popular Items"} subheading={"-- Best In Town --"}></SectionTilte>
-                <EachMenuCategory menu={popularItems}></EachMenuCategory>
+                <EachMenuCategory category={'popular'} menu={popularItems}></EachMenuCategory>
             </>
 
             {/* offered items  */}
             <>
                 <SectionTilte heading={"Offered Items"} subheading={"-- Taste In Best Price --"}></SectionTilte>
-                <EachMenuCategory menu={offeredItems}></EachMenuCategory>
+                <EachMenuCategory category={'offered'} menu={offeredItems}></EachMenuCategory>
             </>
 
             {/* Drinks items  */}
             <div className='my-8'>
                 <SectionCover image={drink} heading={"Drinks Items"} subHeading={"Fruit juice is a popular and refreshing beverage made by extracting the liquid from fruits. It comes in various forms, including 100% pure fruit juice and juice blends. While fruit juice can be a convenient way to consume vitamins and minerals found in fruits, it's essential to be mindful of added sugars in some commercial varieties."}></SectionCover>
-                <EachMenuCategory menu={drinksItems}></EachMenuCategory>
+                <EachMenuCategory category={'drinks'} menu={drinksItems}></EachMenuCategory>
             </div>
             {/* Salad items  */}
             <div className='my-8'>
                 <SectionCover image={salad} heading={"Salad Items"} subHeading={"One of the advantages of salad mixes is the ease of preparation; you can simply open the bag, rinse the contents, and toss together a fresh salad in a matter of minutes. However, it's important to be aware of expiration dates and storage recommendations to ensure the freshness and safety of the greens."}></SectionCover>
-                <EachMenuCategory menu={saladItems}></EachMenuCategory>
+                <EachMenuCategory category={'salad'} menu={saladItems}></EachMenuCategory>
             </div>
             {/* Soup items  */}
             <div className='my-8'>
                 <SectionCover image={soup} heading={"Soup Items"} subHeading={"Soup is a versatile and comforting dish that typically consists of a liquid base, vegetables, and often includes meats, grains, or legumes. It comes in various flavors and textures, ranging from hearty stews to light broths."}></SectionCover>
-                <EachMenuCategory menu={soupItems}></EachMenuCategory>
+                <EachMenuCategory category={'soup'} menu={soupItems}></EachMenuCategory>
             </div>
             {/* Pizza items  */}
             <div className='my-8'>
                 <SectionCover image={pizza} heading={"Pizza Items"} subHeading={"Pizza is a beloved and globally enjoyed dish originating from Italy. It typically features a thin, round crust topped with tomato sauce, cheese, and various ingredients like meats, vegetables, and herbs."}></SectionCover>
-                <EachMenuCategory menu={pizzaItems}></EachMenuCategory>
+                <EachMenuCategory category={'pizza'} menu={pizzaItems}></EachMenuCategory>
             </div>
             {/* Dessert items  */}
             <div className='my-8'>
                 <SectionCover image={dessert} heading={"Dessert Items"} subHeading={"Sweet desserts are indulgent treats enjoyed after meals or as standalone delights. Ranging from cakes, pies, and cookies to ice cream and pastries, desserts satisfy the craving for sweetness."}></SectionCover>
-                <EachMenuCategory menu={desertItems}></EachMenuCategory>
+                <EachMenuCategory category={'dessert'} menu={desertItems}></EachMenuCategory>
             </div>
         </>
     );

@@ -16,7 +16,7 @@ const HomePageShortMenu = () => {
                     homeMenu.map(item => <ItemShow key={item._id} item={item}></ItemShow>)
                 }
             </div>
-            <p className='text-center'><Link to=""><button className='mb-8 mt-5 border-black border-b-2 font-semibold '>View Full Menu</button></Link></p>
+            <p className='text-center'><Link to="/menu"><button className='mb-8 mt-5 border-black border-b-2 font-semibold '>View Full Menu</button></Link></p>
         </div>
     );
 };
