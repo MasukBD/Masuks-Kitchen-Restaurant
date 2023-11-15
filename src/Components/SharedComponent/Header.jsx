@@ -6,9 +6,9 @@ const Header = () => {
 
 
     const navItem = <>
-        <li className='px-1 md:px-4 py-0.5'><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
-        <li className='px-1 md:px-4 py-0.5'><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
-        <li className='px-1 md:px-4 py-0.5'><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
+        <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
+        <li><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
+        <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
     </>
     return (
         <div className="navbar ps-7 md:px-14 bg-[#1C1A27] md:bg-black md:bg-opacity-70 md:fixed z-10">

@@ -7,9 +7,9 @@ body {
 }
 
 .active {
-    @apply text-warning font-semibold
+    @apply text-warning font-semibold md:p-2
 }
 
 .default {
-    @apply text-white font-semibold
+    @apply text-white font-semibold hover:bg-orange-400 md:p-2 hover:rounded-md
 }
