@@ -4,6 +4,9 @@ import Homepage from "../Components/Home/Homepage";
 import ErrorPage from "../Components/SharedComponent/ErrorPage";
 import MenuPage from "../Components/Menu/MenuPage";
 import OrderPage from "../Components/Orderpage/OrderPage";
+import Login from "../Components/AuthComponent/Login";
+import Contact from "../Components/Contact/Contact";
+import Register from "../Components/AuthComponent/Register";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +25,18 @@ const router = createBrowserRouter([
             {
                 path: "/order/:category",
                 element: <OrderPage></OrderPage>
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>
+            },
+            {
+                path: "/login",
+                element: <Login></Login>
+            },
+            {
+                path: "/register",
+                element: <Register></Register>
             }
         ]
     },

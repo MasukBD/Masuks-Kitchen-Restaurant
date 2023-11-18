@@ -10,6 +10,7 @@ const Header = () => {
         <li><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
         <li><NavLink to="/order/popular" className={({ isActive }) => (isActive ? 'active' : 'default')}>Order</NavLink></li>
         <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
+        <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : 'default')}>LogIn</NavLink></li>
     </>
     return (
         <div className="navbar ps-7 md:px-14 bg-[#1C1A27] md:bg-black md:bg-opacity-70 md:fixed z-10">
