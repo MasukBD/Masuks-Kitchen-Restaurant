@@ -1,10 +1,11 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     return (
-        <div>
-
-        </div>
+        <>
+            <Helmet><title>Register | Masuk's Kitchen Restaurant</title></Helmet>
+        </>
     );
 };
 
