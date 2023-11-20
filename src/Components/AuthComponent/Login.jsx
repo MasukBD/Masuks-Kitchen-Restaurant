@@ -6,9 +6,15 @@ import github from '../../assets/images/icons/github.png';
 import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Helmet } from 'react-helmet-async';
+import { useContext } from 'react';
+import { Authcontext } from '../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
+import { useRef } from 'react';
 
 const Login = () => {
     const [error, setError] = useState('');
+    const { Login } = useContext(Authcontext);
+    const getEmail = useRef(null);
 
     useEffect(() => {
         loadCaptchaEnginge(4);
@@ -21,15 +27,23 @@ const Login = () => {
         const password = form.password.value;
         const captchaCode = form.captcha.value;
         if (validateCaptcha(captchaCode)) {
-            form.reset()
-            setError('');
+            Login(email, password)
+                .then(result => {
+                    const loggedUser = result.user;
+                    form.reset();
+                    toast.success(`${loggedUser.displayName} log in Successfully!`)
+                    setError('');
+                })
+                .catch(error => {
+                    setError(`Something went wrong! Error message: ${error.message}`)
+                })
         }
         else {
             setError("captcha doesn't match! try again!")
         }
+    };
 
-
-    }
+    console.log(getEmail.current && getEmail.current.value)
 
     return (
         <>
@@ -43,7 +57,7 @@ const Login = () => {
                     <form onSubmit={handleLogin} className='space-y-3'>
                         <div>
                             <label className='font-semibold' htmlFor="">Email</label><br />
-                            <input className='w-full p-2' type="email" required name="email" placeholder='Please Enter Email' id="email" />
+                            <input className='w-full p-2' ref={getEmail} type="email" required name="email" placeholder='Please Enter Email' id="email" />
                         </div>
                         <div>
                             <label className='font-semibold' htmlFor="">Password</label><br />
