@@ -21,8 +21,8 @@ const Login = () => {
         const password = form.password.value;
         const captchaCode = form.captcha.value;
         if (validateCaptcha(captchaCode)) {
-            alert('Captcha Matched');
             form.reset()
+            setError('');
         }
         else {
             setError("captcha doesn't match! try again!")
@@ -53,6 +53,9 @@ const Login = () => {
                             <div><LoadCanvasTemplate /></div>
                             <input className='grow p-2' required type="text" name="captcha" placeholder='write here' id="captcha" />
                         </div>
+                        {
+                            error && <p className='font-semibold text-red-600'>{error}</p>
+                        }
                         <div>
                             <input className='text-center my-3 text-warning font-semibold border-b-2 p-2 bg-black hover:text-white hover:bg-orange-400 w-full' type="submit" value="Login" />
                         </div>

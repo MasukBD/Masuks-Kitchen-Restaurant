@@ -17,7 +17,7 @@ const HomePageContacts = () => {
                     <FaPhoneAlt className='text-warning text-5xl'></FaPhoneAlt>
                     <div className='text-white'>
                         <p className='text-sm font-semibold'>Make Phone Call?</p>
-                        <h3 className='text-2xl font-semibold'>+123 45678910</h3>
+                        <h3 className='text-2xl font-semibold'>+123 456 789</h3>
                     </div>
                 </div>
                 <div className='flex gap-3 items-center'>
