@@ -3,18 +3,23 @@ import image from '../../assets/images/login/login.png';
 import facebook from '../../assets/images/icons/facebook.png';
 import google from '../../assets/images/icons/google.png';
 import github from '../../assets/images/icons/github.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const { Login } = useContext(Authcontext);
+    const { Login, passwordReset, createUserWithGoogle } = useContext(Authcontext);
     const getEmail = useRef(null);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(4);
@@ -31,8 +36,9 @@ const Login = () => {
                 .then(result => {
                     const loggedUser = result.user;
                     form.reset();
-                    toast.success(`${loggedUser.displayName} log in Successfully!`)
+                    toast.success(`${loggedUser.displayName} logged in Successfully!`)
                     setError('');
+                    navigate(from, { replace: true });
                 })
                 .catch(error => {
                     setError(`Something went wrong! Error message: ${error.message}`)
@@ -43,7 +49,43 @@ const Login = () => {
         }
     };
 
-    console.log(getEmail.current && getEmail.current.value)
+    // Password Reset Email Sent 
+    const handleForgetPassword = () => {
+        const email = getEmail.current.value;
+        if (email) {
+            passwordReset(email)
+                .then(() => {
+                    Swal.fire({
+                        title: "Sent!",
+                        text: "A Password Reset Email Sent To Your Email!",
+                        icon: "info"
+                    });
+                    setError('');
+                })
+                .catch(error => {
+                    setError(`${error.message}`)
+                })
+
+        }
+        else {
+            setError('Please Enter A Valid Email!')
+        }
+
+    };
+
+    // Google Sign IN 
+    const handleGoogleLogin = () => {
+        createUserWithGoogle()
+            .then(result => {
+                const newUser = result.user;
+                toast.success('Sign In Successfull!');
+                setError('');
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                setError(`${error.message}`);
+            })
+    };
 
     return (
         <>
@@ -62,6 +104,7 @@ const Login = () => {
                         <div>
                             <label className='font-semibold' htmlFor="">Password</label><br />
                             <input className='w-full p-2' required type="password" name="password" placeholder='Please Enter Password' id="password" />
+                            <span onClick={handleForgetPassword} className='text-blue-600 text-sm mt-0.5 cursor-pointer'>Forget Password?</span>
                         </div>
                         <div className='flex gap-5'>
                             <div><LoadCanvasTemplate /></div>
@@ -78,7 +121,7 @@ const Login = () => {
                     <p className='text-center'>Sign in with</p>
                     <div className='text-center py-2 gap-4 flex items-center justify-center'>
                         <button><img className='w-1/2 mx-auto' title='facebook' src={facebook} alt="" /></button>
-                        <button><img className='w-1/2 mx-auto' title='google' src={google} alt="" /></button>
+                        <button onClick={handleGoogleLogin}><img className='w-1/2 mx-auto' title='google' src={google} alt="" /></button>
                         <button><img className='w-1/2 mx-auto' title='github' src={github} alt="" /></button>
                     </div>
                     <p className=' py-2 text-center'>Sign up with Email Password <Link className='underline text-blue-500' to="/register">Register</Link> ?</p>

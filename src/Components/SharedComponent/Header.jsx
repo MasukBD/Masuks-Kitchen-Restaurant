@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Authcontext } from '../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Header = () => {
 
+    const { user, logOut } = useContext(Authcontext);
 
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success('Logout Successfull!')
+            })
+            .catch(error => {
+                toast.error('Something went wrong!')
+            })
+    }
 
     const navItem = <>
+        {
+            user && <span className='font-semibold md:pr-20 text-white '>{user.displayName ? user.displayName : "User"}</span>
+        }
         <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
         <li><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
         <li><NavLink to="/order/popular" className={({ isActive }) => (isActive ? 'active' : 'default')}>Order</NavLink></li>
         <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
-        <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : 'default')}>LogIn</NavLink></li>
+        {
+            user ? <button onClick={handleLogout} className='default'>Logout</button> : <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : 'default')}>LogIn</NavLink></li>
+        }
     </>
     return (
         <div className="navbar ps-7 md:px-14 bg-[#1C1A27] md:bg-black md:bg-opacity-70 md:fixed z-10">
