@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
+import { FaCartPlus, FaRegUserCircle } from "react-icons/fa";
+
 
 const Header = () => {
 
@@ -18,15 +20,32 @@ const Header = () => {
     }
 
     const navItem = <>
-        {
-            user && <span className='font-semibold md:pr-20 text-white '>{user.displayName ? user.displayName : "User"}</span>
-        }
+        {/* <li>
+            {
+                user &&
+                <span title={user.displayName} className='font-semibold md:pr-10 text-white '>{user.displayName.length > 8 ? user.displayName.substr(0, 8) : user.displayName}</span>
+            }
+        </li> */}
+        <li className='md:px-5 text-3xl text-white relative'><Link to='/cart'><FaCartPlus /> <div className="badge badge-warning font-semibold absolute -top-3 left-3 md:left-7">+9</div></Link></li>
         <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
         <li><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
         <li><NavLink to="/order/popular" className={({ isActive }) => (isActive ? 'active' : 'default')}>Order</NavLink></li>
         <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
         {
-            user ? <button onClick={handleLogout} className='default'>Logout</button> : <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : 'default')}>LogIn</NavLink></li>
+            user ?
+                <li className='dropdown'>
+                    <label tabIndex={0}>
+                        {
+                            user.photoURL ? <img title={user.displayName} className='w-10 rounded-full m-2 text-center' src={user.photoURL} alt="" /> : <FaRegUserCircle title={user.displayName} className='text-white text-3xl m-2 text-center'></FaRegUserCircle>
+                        }
+                    </label>
+                    <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 z-10 shadow rounded">
+                        <li className='default'><Link to=''>Profile</Link></li>
+                        <li><button onClick={handleLogout} className='default'>LogOut</button></li>
+                    </ul>
+                </li>
+                :
+                <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : 'default')}>LogIn</NavLink></li>
         }
     </>
     return (

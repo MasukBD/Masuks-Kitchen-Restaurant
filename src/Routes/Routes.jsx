@@ -7,6 +7,8 @@ import OrderPage from "../Components/Orderpage/OrderPage";
 import Login from "../Components/AuthComponent/Login";
 import Contact from "../Components/Contact/Contact";
 import Register from "../Components/AuthComponent/Register";
+import PrivateRoute from "./PrivateRoute";
+import CartItem from "../Components/CartPages/CartItem";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact></Contact>
+            },
+            {
+                path: '/cart',
+                element: <PrivateRoute><CartItem></CartItem></PrivateRoute>
             },
             {
                 path: "/login",
