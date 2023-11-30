@@ -3,11 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FaCartPlus, FaRegUserCircle } from "react-icons/fa";
+import useCart from '../../Hooks/useCart';
 
 
 const Header = () => {
 
     const { user, logOut } = useContext(Authcontext);
+    const [cart] = useCart();
 
     const handleLogout = () => {
         logOut()
@@ -26,7 +28,7 @@ const Header = () => {
                 <span title={user.displayName} className='font-semibold md:pr-10 text-white '>{user.displayName.length > 8 ? user.displayName.substr(0, 8) : user.displayName}</span>
             }
         </li> */}
-        <li className='md:px-5 text-3xl text-white relative'><Link to='/cart'><FaCartPlus /> <div className="badge badge-warning font-semibold absolute -top-3 left-3 md:left-7">+9</div></Link></li>
+        <li className='md:px-5 text-3xl text-white relative'><Link to='/dashboard/myCart'><FaCartPlus /> <div className="badge badge-warning font-semibold absolute -top-3 left-3 md:left-7">+{cart?.length || 0}</div></Link></li>
         <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
         <li><NavLink to="/menu" className={({ isActive }) => (isActive ? 'active' : 'default')}>Menu</NavLink></li>
         <li><NavLink to="/order/popular" className={({ isActive }) => (isActive ? 'active' : 'default')}>Order</NavLink></li>
@@ -39,8 +41,8 @@ const Header = () => {
                             user.photoURL ? <img title={user.displayName} className='w-10 rounded-full m-2 text-center' src={user.photoURL} alt="" /> : <FaRegUserCircle title={user.displayName} className='text-white text-3xl m-2 text-center'></FaRegUserCircle>
                         }
                     </label>
-                    <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 z-10 shadow rounded">
-                        <li className='default'><Link to=''>Profile</Link></li>
+                    <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 md:px-1 z-10 shadow rounded">
+                        <li className='default'><Link to='/dashboard/'>Dashboard</Link></li>
                         <li><button onClick={handleLogout} className='default'>LogOut</button></li>
                     </ul>
                 </li>
@@ -49,7 +51,7 @@ const Header = () => {
         }
     </>
     return (
-        <div className="navbar ps-7 md:px-14 bg-[#1C1A27] md:bg-black md:bg-opacity-70 md:fixed z-10">
+        <div className="navbar ps-7 md:px-16 bg-[#1C1A27] md:bg-black md:bg-opacity-70 md:fixed z-10">
             <Link to="/" style={{ fontFamily: 'Domine', }} className="text-white hover:text-warning font-semibold"><p><span className='text-sm'>MASUK'S&nbsp;KITCHEN</span> <br /> <span className='text-lg'>RESTAURANT</span></p></Link>
             <div className="navbar-end">
                 <div className="dropdown">

@@ -9,6 +9,8 @@ import Contact from "../Components/Contact/Contact";
 import Register from "../Components/AuthComponent/Register";
 import PrivateRoute from "./PrivateRoute";
 import CartItem from "../Components/CartPages/CartItem";
+import Dashboard from "../Layout/Dashboard";
+import UserHome from "../Components/UserDashboard/UserHome";
 
 const router = createBrowserRouter([
     {
@@ -33,10 +35,6 @@ const router = createBrowserRouter([
                 element: <Contact></Contact>
             },
             {
-                path: '/cart',
-                element: <PrivateRoute><CartItem></CartItem></PrivateRoute>
-            },
-            {
                 path: "/login",
                 element: <Login></Login>
             },
@@ -46,6 +44,20 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "/dashboard",
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: "/dashboard/",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: '/dashboard/myCart',
+                element: <PrivateRoute><CartItem></CartItem></PrivateRoute>
+            },
+        ]
+    }
 ]);
 
 export default router;

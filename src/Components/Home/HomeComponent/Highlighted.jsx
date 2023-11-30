@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTilte from '../../SharedComponent/SectionTilte';
 import image from '../../../assets/images/highlighted/highlighted.jpg';
 import moment from 'moment/moment';
+import { Link } from 'react-router-dom';
 
 
 const Highlighted = () => {
@@ -17,7 +18,7 @@ const Highlighted = () => {
                         <p className='font-semibold'>{moment().format('MMMM Do, YYYY')}</p>
                         <p className='uppercase text-sm font-semibold'>You Will Feel Something Special in you!</p>
                         <p>Grilled Salmon with Lemon Herb Butter is a delectable dish featuring perfectly grilled salmon seasoned with dill, parsley, and thyme. The star is the luscious Lemon Herb Butter, infused with zesty lemon juice. Served with grilled asparagus and fluffy quinoa, the dish is visually stunning.</p>
-                        <button className='border-b-2 py-1 px-2 hover:border-black border-white hover:bg-orange-400 font-semibold'>Order Now</button>
+                        <Link to='/order/popular'><button className='border-b-2 py-1 px-2 hover:border-black border-white hover:bg-orange-400 font-semibold mt-2'>Order Now</button></Link>
                     </div>
                 </div>
             </div>

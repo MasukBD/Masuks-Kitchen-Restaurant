@@ -14,7 +14,7 @@ import EachMenuCategory from '../SharedComponent/EachMenuCategory';
 const MenuPage = () => {
     const [menu, popularItems, offeredItems, drinksItems, saladItems, pizzaItems, soupItems, desertItems, loading] = useMenu();
     if (loading) {
-        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 md:w-32 text-warning'></span></p>
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 md:w-24 text-warning'></span></p>
     }
     return (
         <>

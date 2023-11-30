@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
+import useCart from '../../Hooks/useCart';
 
 const ItemShowInCard = ({ item }) => {
     const { _id, name, image, recipe, price } = item;
     const { user } = useContext(Authcontext);
     const navigate = useNavigate();
     const location = useLocation();
+    const [, refetch,] = useCart();
 
     const handleAddToCart = () => {
         if (user && user.email) {
@@ -22,6 +24,7 @@ const ItemShowInCard = ({ item }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
+                        refetch();
                         toast.success('Item Added To Cart!')
                     }
                 })
@@ -32,7 +35,7 @@ const ItemShowInCard = ({ item }) => {
     }
     return (
         <div className='relative shadow-lg flex flex-col text-center shadow-orange-100 border'>
-            <img src={image} alt="" />
+            <img className='hover:cursor-zoom-in hover:scale-125 transition duration-500' src={image} alt="" />
             <h3 className='absolute right-2 top-2 font-semibold text-warning bg-gradient-to-r from-green-600 to-black p-1 rounded-md'>${price}</h3>
             <h2 className='text-2xl font-semibold my-2'>{name}</h2>
             <p className='mb-2'>{recipe}</p>

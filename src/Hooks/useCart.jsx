@@ -10,7 +10,7 @@ const useCart = () => {
             return response.json()
         },
     })
-    return [cart, refetch, isError]
+    return [cart, refetch, isError];
 }
 
 export default useCart;
