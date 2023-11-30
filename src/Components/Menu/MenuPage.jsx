@@ -12,14 +12,10 @@ import useMenu from '../../Hooks/UseMenu';
 import EachMenuCategory from '../SharedComponent/EachMenuCategory';
 
 const MenuPage = () => {
-    const [menu, loading] = useMenu();
-    const popularItems = menu.filter(item => item.category === 'popular');
-    const offeredItems = menu.filter(item => item.category === 'offered');
-    const drinksItems = menu.filter(item => item.category === 'drinks');
-    const saladItems = menu.filter(item => item.category === 'salad');
-    const pizzaItems = menu.filter(item => item.category === 'pizza');
-    const soupItems = menu.filter(item => item.category === 'soup');
-    const desertItems = menu.filter(item => item.category === 'dessert');
+    const [menu, popularItems, offeredItems, drinksItems, saladItems, pizzaItems, soupItems, desertItems, loading] = useMenu();
+    if (loading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 md:w-32 text-warning'></span></p>
+    }
     return (
         <>
             <Helmet><title>Menu || Masuk's Kitchen Restaurant</title></Helmet>
