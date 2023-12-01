@@ -22,17 +22,30 @@ const Register = () => {
             .then(result => {
                 const newUser = result.user;
                 updateProfile(newUser, { displayName: data.name })
-                sendEmailVerification(newUser)
-                    .then(() => {
-                        Swal.fire({
-                            title: "Registration Successfull!",
-                            text: "A Verification Email sent to your Email!",
-                            icon: "success"
-                        });
+                const savedUser = { name: data.name, email: data.email }
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            sendEmailVerification(newUser)
+                                .then(() => {
+                                    Swal.fire({
+                                        title: "Registration Successfull!",
+                                        text: "A Verification Email sent to your Email!",
+                                        icon: "success"
+                                    });
+                                })
+                            setError('');
+                            reset();
+                            navigate('/');
+                        }
                     })
-                setError('');
-                reset();
-                navigate('/');
             })
             .catch(error => {
                 setError(`${error.message}`);
