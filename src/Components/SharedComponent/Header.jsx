@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
-import { FaCartPlus, FaRegUserCircle } from "react-icons/fa";
+import { FaCartPlus, FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
 import useCart from '../../Hooks/useCart';
 
 
@@ -38,12 +38,12 @@ const Header = () => {
                 <li className='dropdown'>
                     <label tabIndex={0}>
                         {
-                            user.photoURL ? <img title={user.displayName} className='w-10 rounded-full m-2 text-center' src={user.photoURL} alt="" /> : <FaRegUserCircle title={user.displayName} className='text-white text-3xl m-2 text-center'></FaRegUserCircle>
+                            user.photoURL ? <img title={user.displayName} className='w-10 rounded-full m-2 text-center cursor-pointer' src={user.photoURL} alt="" /> : <FaRegUserCircle title={user.displayName} className='text-white text-3xl m-2 text-center cursor-pointer'></FaRegUserCircle>
                         }
                     </label>
                     <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 md:px-1 z-10 shadow rounded">
                         <li className='default'><Link to='/dashboard/'>Dashboard</Link></li>
-                        <li><button onClick={handleLogout} className='default'>LogOut</button></li>
+                        <li className='default'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
                     </ul>
                 </li>
                 :

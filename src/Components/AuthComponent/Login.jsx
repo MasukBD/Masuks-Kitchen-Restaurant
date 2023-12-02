@@ -78,9 +78,20 @@ const Login = () => {
         createUserWithGoogle()
             .then(result => {
                 const newUser = result.user;
-                toast.success('Sign In Successfull!');
-                setError('');
-                navigate(from, { replace: true });
+                const savedUser = { name: newUser.displayName, email: newUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        toast.success('Sign In Successfull!');
+                        setError('');
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => {
                 setError(`${error.message}`);
