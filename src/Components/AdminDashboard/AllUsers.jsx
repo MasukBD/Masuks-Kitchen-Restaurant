@@ -4,13 +4,32 @@ import { Helmet } from 'react-helmet-async';
 import SectionTilte from '../SharedComponent/SectionTilte';
 import { FaTrashAlt, FaUserCog } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
 
 const AllUsers = () => {
+    // Option 1: use Regular Tanstack/react Query for fetching data using fetch 
+    // ----------------------------------------------------------
+    // const token = localStorage.getItem('access-token')
+    // const { data: users = [], refetch } = useQuery({
+    //     queryKey: ['users'],
+    //     queryFn: async () => {
+    //         const response = await fetch('http://localhost:5000/users', {
+    //             headers: {
+    //                 authorization: `bearer ${token}`
+    //             }
+    //         })
+    //         return response.json();
+    //     }
+    // });
+    //-----------------------------------------------------option 1 finish here
+
+    // Option 2: Use CustomHook(useAxiosInterceptor) made by Axios(Instance & Interceptor) with Tanstack/reactQuery 
+    const axiosSecure = useAxiosInterceptor();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:5000/users')
-            return response.json();
+            const response = await axiosSecure.get('/users')
+            return response.data;
         }
     });
 

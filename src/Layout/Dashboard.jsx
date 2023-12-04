@@ -5,11 +5,12 @@ import { FaCalendarDays, FaWallet, FaCalendarCheck, FaClipboardCheck, FaEnvelope
 import { Authcontext } from '../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import useAdmin from '../Hooks/useAdmin';
 
 const Dashboard = () => {
     const { logOut } = useContext(Authcontext);
 
-    const isAdmin = true;
+    const [refetch, isAdmin, isLoading] = useAdmin();
 
     const handleLogout = () => {
         logOut()

@@ -39,19 +39,18 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
 
-            // JWT Token Verify Users 
+            //JWT Clientsite::STEP=1 send user unique credintial and get the token and set it to localStorage/cookie, remember when the user logout, remove the token from localStorage__just follow this pic of code
             if (currentUser) {
                 axios.post('http://localhost:5000/jwt', { email: currentUser.email })
                     .then(data => {
-                        localStorage.setItem('access-token', data.data.token)
+                        localStorage.setItem('access-token', data.data.token);
+                        setLoading(false);
                     })
             }
             else {
                 localStorage.removeItem('access-token');
             }
-
         });
         return () => {
             return unsubscribe();
