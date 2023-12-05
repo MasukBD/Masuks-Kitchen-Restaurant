@@ -24,14 +24,14 @@ const OrderPage = () => {
             <SectionCover image={orderImage} heading={"Order Food"} subHeading={"Browse the menu, add items to your cart, and complete the order with your preferred payment method for a seamless online food ordering experience."}></SectionCover>
             <div className='my-10 md:w-11/12 mx-auto p-2 text-center font-semibold'>
                 <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                    <TabList className='uppercase'>
-                        <Tab>Popular Items</Tab>
-                        <Tab>Offered Items</Tab>
-                        <Tab>Drinks</Tab>
-                        <Tab>Salads</Tab>
-                        <Tab>Soup</Tab>
-                        <Tab>Pizza</Tab>
-                        <Tab>Desserts</Tab>
+                    <TabList className='uppercase bg-black text-white'>
+                        <Tab selectedClassName='text-warning'>Popular Items</Tab>
+                        <Tab selectedClassName='text-warning'>Offered Items</Tab>
+                        <Tab selectedClassName='text-warning'>Drinks</Tab>
+                        <Tab selectedClassName='text-warning'>Salads</Tab>
+                        <Tab selectedClassName='text-warning'>Soup</Tab>
+                        <Tab selectedClassName='text-warning'>Pizza</Tab>
+                        <Tab selectedClassName='text-warning'>Desserts</Tab>
                     </TabList>
                     <TabPanel>
                         <OrderTab items={popularItems}></OrderTab>

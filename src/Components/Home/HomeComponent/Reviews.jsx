@@ -12,6 +12,7 @@ import 'swiper/css/navigation';
 // React Ratings (react awsome componet) 
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
+
 import { FaQuoteLeft } from 'react-icons/fa';
 
 const Reviews = () => {

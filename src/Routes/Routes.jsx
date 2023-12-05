@@ -12,7 +12,9 @@ import CartItem from "../Components/CartPages/CartItem";
 import Dashboard from "../Layout/Dashboard";
 import UserHome from "../Components/UserDashboard/UserHome";
 import AllUsers from "../Components/AdminDashboard/AllUsers";
+import AdminHome from "../Components/AdminDashboard/adminHome";
 import AdminRoute from "./AdminRoute";
+import AddAItem from "../Components/AdminDashboard/AddAItem";
 
 const router = createBrowserRouter([
     {
@@ -51,17 +53,25 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
+                path: '/dashboard/adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+            {
+                path: '/dashboard/allUsers',
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: '/dashboard/addItem',
+                element: <AdminRoute><AddAItem></AddAItem></AdminRoute>
+            },
+            {
                 path: "/dashboard/userHome",
-                element: <UserHome></UserHome>
+                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
             {
                 path: '/dashboard/myCart',
                 element: <PrivateRoute><CartItem></CartItem></PrivateRoute>
             },
-            {
-                path: '/dashboard/allUsers',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-            }
         ]
     }
 ]);

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { HiShoppingCart, HiHome, HiMenuAlt1, HiLogout } from "react-icons/hi";
 import { FaCalendarDays, FaWallet, FaCalendarCheck, FaClipboardCheck, FaEnvelope, FaUsers, FaBook, FaUtensils, FaAlignCenter } from "react-icons/fa6";
 import { Authcontext } from '../Provider/AuthProvider';
@@ -10,12 +10,13 @@ import useAdmin from '../Hooks/useAdmin';
 const Dashboard = () => {
     const { logOut } = useContext(Authcontext);
 
+
     const [refetch, isAdmin, isLoading] = useAdmin();
 
     const handleLogout = () => {
         logOut()
             .then(() => {
-                toast.success('Logout Successfull!')
+                toast.success('Logout Successfull!');
             })
             .catch(error => {
                 toast.error('Something went wrong!')

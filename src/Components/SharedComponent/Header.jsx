@@ -4,11 +4,13 @@ import { Authcontext } from '../../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FaCartPlus, FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
 
 
 const Header = () => {
 
     const { user, logOut } = useContext(Authcontext);
+    const [, isAdmin] = useAdmin();
     const [cart] = useCart();
 
     const handleLogout = () => {
@@ -42,7 +44,7 @@ const Header = () => {
                         }
                     </label>
                     <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 md:px-1 z-10 shadow rounded">
-                        <li className='default'><Link to='/dashboard/'>Dashboard</Link></li>
+                        <li className='default'><Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
                         <li className='default'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
                     </ul>
                 </li>
