@@ -56,7 +56,8 @@ const Contact = () => {
                                 <textarea className='p-2 w-full' required name="message" id="message" cols="30" rows="10"></textarea>
                             </div>
                             <div>
-                                recaptcha
+                                {/* TODO  */}
+                                {/* Recapthca */}
                             </div>
                             <div className='flex items-center justify-center pt-10'>
                                 <button className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'><input type="submit" value="Send Message" /> <FaPaperPlane></FaPaperPlane></button>
