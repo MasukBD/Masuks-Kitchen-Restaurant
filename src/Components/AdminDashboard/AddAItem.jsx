@@ -1,29 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTilte from '../SharedComponent/SectionTilte';
 import { Helmet } from 'react-helmet-async';
 import { FaUtensils } from 'react-icons/fa6';
-import { useForm } from "react-hook-form"
-import axios from 'axios';
+import { useForm } from "react-hook-form";
+import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
+import Swal from 'sweetalert2';
 
-// Upload image to host site(imgbb) steps here step:: 2 get api key from env file
+// Upload image to host site(imgbb) steps here step::1 get api key from env file
 const imageHostingApiKey = import.meta.env.VITE_IMAGE_HOSTING_API_KEY;
 
 const AddAItem = () => {
+    const [btnLoader, setBtnLoader] = useState(false);
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
+    const axiosSecure = useAxiosInterceptor();
 
-    // Upload image to host site(imgbb) steps here step:: 2 make URL
+    // Upload image to host site(imgbb) steps here step::2 make URL
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
 
     const onSubmit = (data) => {
         //Upload image to host site(imgbb) steps here step::3 create formdata  
         const formData = new FormData();
         formData.append('image', data.image[0]);
-
+        setBtnLoader(true)
         //Upload image to host site(imgbb) steps here step::4 fetch data via POST method
         fetch(imageHostingUrl, { method: 'POST', body: formData })
             .then(res => res.json())
             .then(imageRes => {
-                console.log(imageRes.data.display_url)
+                if (imageRes.success) {
+                    const imgUrl = imageRes.data.display_url;
+                    const { name, price, recipe, category } = data;
+                    const menuItem = { name, recipe, image: imgUrl, category, price: parseFloat(price) };
+                    axiosSecure.post('/menu', menuItem)
+                        .then(data => {
+                            if (data.data.insertedId) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Item Added to Menu Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                reset();
+                                setBtnLoader(false);
+                            }
+                        })
+                }
             })
     }
 
@@ -75,7 +96,7 @@ const AddAItem = () => {
                         {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                     </div>
                     <div className='flex items-center justify-center pt-10'>
-                        <button className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'><input type="submit" value="Add Item" /> <FaUtensils></FaUtensils></button>
+                        <button disabled={btnLoader} className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'> {btnLoader ? 'Item Adding...' : 'Add Item'} <FaUtensils></FaUtensils></button>
                     </div>
                 </form>
             </div>
