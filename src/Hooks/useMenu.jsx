@@ -1,17 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const useMenu = () => {
-    const [menu, setMenu] = useState([]);
-    const [loading, setLoading] = useState(true);
+    // const [menu, setMenu] = useState([]);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/menu')
-            .then(res => res.json())
-            .then(data => {
-                setLoading(false);
-                setMenu(data);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/menu')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setLoading(false);
+    //             setMenu(data);
+    //         });
+    // }, []);
+
+    // OR We can use REACT QUERY / TANSTACK QUERY 
+
+    const { refetch, data: menu = [], isLoading: loading } = useQuery({
+        queryKey: ['menu'],
+        queryFn: async () => {
+            const response = await fetch('http://localhost:5000/menu')
+            return response.json();
+        }
+    })
+
     const popularItems = menu.filter(item => item.category === 'popular');
     const offeredItems = menu.filter(item => item.category === 'offered');
     const drinksItems = menu.filter(item => item.category === 'drinks');
@@ -20,7 +32,7 @@ const useMenu = () => {
     const soupItems = menu.filter(item => item.category === 'soup');
     const desertItems = menu.filter(item => item.category === 'dessert');
 
-    return [menu, popularItems, offeredItems, drinksItems, saladItems, pizzaItems, soupItems, desertItems, loading];
+    return [menu, popularItems, offeredItems, drinksItems, saladItems, pizzaItems, soupItems, desertItems, loading, refetch];
 };
 
 export default useMenu;

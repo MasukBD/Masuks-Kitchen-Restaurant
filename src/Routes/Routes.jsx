@@ -15,6 +15,7 @@ import AllUsers from "../Components/AdminDashboard/AllUsers";
 import AdminHome from "../Components/AdminDashboard/adminHome";
 import AdminRoute from "./AdminRoute";
 import AddAItem from "../Components/AdminDashboard/AddAItem";
+import ManageItem from "../Components/AdminDashboard/ManageItem";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addItem',
                 element: <AdminRoute><AddAItem></AddAItem></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageItems',
+                element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
             },
             {
                 path: "/dashboard/userHome",
