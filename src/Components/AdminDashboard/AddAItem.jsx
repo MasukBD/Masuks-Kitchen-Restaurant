@@ -18,10 +18,11 @@ const AddAItem = () => {
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
 
     const onSubmit = (data) => {
+        setBtnLoader(true)
         //Upload image to host site(imgbb) steps here step::3 create formdata  
         const formData = new FormData();
         formData.append('image', data.image[0]);
-        setBtnLoader(true)
+
         //Upload image to host site(imgbb) steps here step::4 fetch data via POST method
         fetch(imageHostingUrl, { method: 'POST', body: formData })
             .then(res => res.json())
@@ -69,7 +70,7 @@ const AddAItem = () => {
                         <div>
                             <label className='font-semibold'>Price <span className='text-red-500'>*</span></label> <br />
                             <input {...register("price", { required: true })} className='p-2 w-full rounded-sm' min='0' step='0.01' type="number" placeholder='Item Price' id="Price" />
-                            {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
+                            {errors.price?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                         </div>
                         <div>
                             <label className='font-semibold'>Category <span className='text-red-500'>*</span></label> <br />
@@ -82,18 +83,18 @@ const AddAItem = () => {
                                 <option value="pizza">Pizza</option>
                                 <option value="dessert">Dessert</option>
                             </select>
-                            {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
+                            {errors.category?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                         </div>
                     </div>
                     <div>
                         <label className='font-semibold'>Recipe Details <span className='text-red-500'>*</span></label> <br />
                         <textarea {...register("recipe", { required: true })} className='p-2 w-full' id="recipeDetails" cols="30" rows="10"></textarea>
-                        {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
+                        {errors.recipe?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                     </div>
                     <div>
                         <label className='font-semibold'>Upload Photo <span className='text-red-500'>*</span></label> <br />
                         <input {...register("image", { required: true })} type="file" className="file-input file-input-bordered file-input-warning w-full md:w-1/2" /> <br />
-                        {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
+                        {errors.image?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                     </div>
                     <div className='flex items-center justify-center pt-10'>
                         <button disabled={btnLoader} className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'> {btnLoader ? 'Item Adding...' : 'Add Item'} <FaUtensils></FaUtensils></button>

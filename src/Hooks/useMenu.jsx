@@ -16,7 +16,7 @@ const useMenu = () => {
 
     // OR We can use REACT QUERY / TANSTACK QUERY 
 
-    const { refetch, data: menu = [], isLoading: loading } = useQuery({
+    const { data: menu = [], refetch, isLoading: loading } = useQuery({
         queryKey: ['menu'],
         queryFn: async () => {
             const response = await fetch('http://localhost:5000/menu')
