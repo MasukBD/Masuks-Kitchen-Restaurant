@@ -8,18 +8,19 @@ import { FaTrash } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
 import SectionTilte from '../SharedComponent/SectionTilte';
-import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+const imageHostingApiKey = import.meta.env.VITE_IMAGE_HOSTING_API_KEY;
 
 const ManageItem = () => {
     const [menu, popularItems, , , , , , , loading, refetch] = useMenu();
     const [categoricalItem, setCategoricalItem] = useState([]);
     const [editItem, setEditItem] = useState(null);
-    const [btnLoader, setBtnLoader] = useState(false);
-    const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const axiosSecure = useAxiosInterceptor();
 
+    const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
 
-    // This function decleared for setting initial value of category item 
+
+    // This function decleared for setting initial value of category item to check two array are equal
     function arraysAreEqual(array1, array2) {
         if (array1.length !== array2.length) {
             return false;
@@ -41,20 +42,55 @@ const ManageItem = () => {
     }, [menu]);
 
     const handleSort = event => {
-        const sortedData = event.target.value;
-        const sortedItem = menu.filter(item => item.category === sortedData);
+        const getSortedItem = event.target.value;
+        const sortedItem = menu.filter(item => item.category === getSortedItem);
         setCategoricalItem(sortedItem);
     };
 
-    const handleEditMenuItem = item => {
+    const handleEditMenuItemButton = item => {
         setEditItem(item);
-        console.log(item._id)
+        // SHOW MODAL FROM HERE 
         document.getElementById('my_modal_4').showModal();
     };
 
-    const onSubmit = data => {
-        console.log(data);
-    }
+    // Update MenuItem Data Here Which POP UP AS MODAL
+    const handleSubmitEditedData = async (event) => {
+        const from = event.target;
+        const name = from.name.value;
+        const price = from.price.value;
+        const category = from.category.value;
+        const recipe = from.recipe.value;
+        const image = from.image.files[0];
+        if (image) {
+            const formData = new FormData();
+            formData.append("image", image);
+            await fetch(imageHostingUrl, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(imageRes => {
+                    if (imageRes.success) {
+                        const imgUrl = imageRes.data.display_url;
+                        const updatedItemData = { name, price: parseFloat(price), category, recipe, image: imgUrl };
+                        axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
+                            .then(data => {
+                                if (data.data.modifiedCount) {
+                                    toast.success('Updated Successfully')
+                                    refetch();
+                                }
+                            })
+                    }
+                })
+        }
+        else {
+            const updatedItemData = { name, price: parseFloat(price), image: editItem?.image, category, recipe };
+            axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
+                .then(data => {
+                    if (data.data.modifiedCount) {
+                        toast.success('Updated Successfully');
+                        refetch();
+                    }
+                })
+        }
+    };
 
     const handleDeleteItemFromMenu = id => {
         Swal.fire({
@@ -79,8 +115,19 @@ const ManageItem = () => {
                         }
                     })
             }
-        });
+        })
+    };
+
+    // This function is for cancel modal from UI
+    const handleCancel = () => {
+        toast('Update Cancelled!');
+        window.location.reload();
+    };
+
+    if (loading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 md:w-24 text-warning'></span></p>
     }
+
     return (
         <>
             <Helmet><title>Manage Items | Masuk's Kitchen Restaurant</title></Helmet>
@@ -90,10 +137,10 @@ const ManageItem = () => {
                 <select onChange={handleSort} className='p-2 border-warning border-2 rounded-md' name="category" id="category">
                     <option value="popular">Popular</option>
                     <option value="offered">Offered</option>
-                    <option value="salad">Salad</option>
                     <option value="drinks">Drinks</option>
-                    <option value="soup">Soup</option>
+                    <option value="salad">Salad</option>
                     <option value="pizza">Pizza</option>
+                    <option value="soup">Soup</option>
                     <option value="dessert">Dessert</option>
                 </select>
             </div>
@@ -122,9 +169,9 @@ const ManageItem = () => {
                                     <td className='flex justify-center'><img className='w-12 rounded-md hover:scale-150 transition duration-500' src={item.image} alt="" /></td>
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
-                                    <td><button onClick={() => handleEditMenuItem(item)} className='text-xl text-orange-800 p-2 rounded-full hover:bg-warning'><FaRegEdit></FaRegEdit></button></td>
+                                    <td><button title='Edit' onClick={() => handleEditMenuItemButton(item)} className='text-xl text-orange-800 p-2 rounded-full hover:bg-warning'><FaRegEdit></FaRegEdit></button></td>
                                     <th>
-                                        <button onClick={() => { handleDeleteItemFromMenu(item._id) }} className='text-xl p-2 rounded-full  hover:bg-error'><FaTrash></FaTrash></button>
+                                        <button title='Delete' onClick={() => { handleDeleteItemFromMenu(item._id) }} className='text-xl p-2 rounded-full  hover:bg-error'><FaTrash></FaTrash></button>
                                     </th>
                                 </tr>)
                             }
@@ -132,16 +179,17 @@ const ManageItem = () => {
                     </table>
                 </div>
             </div>
+            {/* MODAL HERE */}
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="my_modal_4" className="modal">
                 <div className="modal-box w-11/12 max-w-5xl">
                     <SectionTilte subheading={'-- Put Correct Data --'} heading={'Update A Item'}></SectionTilte>
                     <div className="modal-action">
-                        <form method='dialog' onSubmit={handleSubmit(onSubmit)} className='bg-base-200 w-full px-2 py-5 space-y-3 my-4'>
+                        <form onSubmit={handleSubmitEditedData} method='dialog' className='bg-base-200 w-full px-2 py-5 space-y-3 my-4'>
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8'>
                                 <div>
                                     <label className='font-semibold'>Recipe Name *</label> <br />
-                                    <input defaultValue={editItem?.name} {...register("name")} className='p-2 w-full rounded-sm' type="text" placeholder='Recipe Name Here' id="name" />
+                                    <input required defaultValue={editItem?.name} name='name' className='p-2 w-full rounded-sm' type="text" placeholder='Recipe Name Here' id="name" />
                                 </div>
                                 <div>
                                     <label className='font-semibold'>Availability</label> <br />
@@ -151,32 +199,37 @@ const ManageItem = () => {
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8'>
                                 <div>
                                     <label className='font-semibold'>Price *</label> <br />
-                                    <input defaultValue={editItem?.price} {...register("price")} className='p-2 w-full rounded-sm' min='0' step='0.01' type="number" placeholder='Item Price' id="Price" />
+                                    <input required defaultValue={editItem?.price} name='price' className='p-2 w-full rounded-sm' min='0' step='0.01' type="number" placeholder='Item Price' id="Price" />
                                 </div>
                                 <div>
-                                    <label className='font-semibold'>Category *</label> <br />
-                                    <select defaultValue={editItem?.category} {...register("category")} className='px-2 py-2.5 w-full rounded-sm' name="category" id="category">
+                                    <label className='font-semibold'>Category *</label>
+                                    <br />
+                                    <select value={editItem?.category} required className='px-2 py-2.5 w-full rounded-sm' name="category">
                                         <option value="popular">Popular</option>
                                         <option value="offered">Offered</option>
                                         <option value="drinks">Drinks</option>
-                                        <option value="soup">Soup</option>
                                         <option value="salad">Salad</option>
                                         <option value="pizza">Pizza</option>
+                                        <option value="soup">Soup</option>
                                         <option value="dessert">Dessert</option>
                                     </select>
-
                                 </div>
                             </div>
                             <div>
                                 <label className='font-semibold'>Recipe Details *</label> <br />
-                                <textarea defaultValue={editItem?.recipe} {...register("recipe")} className='p-2 w-full' id="recipeDetails" cols="30" rows="10"></textarea>
+                                <textarea required defaultValue={editItem?.recipe} name='recipe' className='p-2 w-full' id="recipeDetails" cols="30" rows="10"></textarea>
+                            </div>
+                            <div>
+                                <label><span className='font-semibold'>Current Photo </span></label>
+                                <img className='w-56' src={editItem?.image} alt="" />
                             </div>
                             <div>
                                 <label className='font-semibold'>Upload New Photo *</label> <br />
-                                <input {...register("image")} type="file" className="file-input file-input-bordered file-input-warning w-full md:w-1/2" />
+                                <input name='image' type="file" className="file-input file-input-bordered file-input-warning w-full md:w-1/2" />
                             </div>
-                            <div className='flex items-center justify-center pt-10'>
-                                <button disabled={btnLoader} className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'> {btnLoader ? 'Updating...' : 'Update Item'} <FaUtensils></FaUtensils></button>
+                            <div className='flex items-center gap-5 justify-center pt-10'>
+                                <button type='submit' className='flex gap-2 items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'> Update Item <FaUtensils></FaUtensils></button>
+                                <button type='button' onClick={handleCancel} className='flex items-center bg-black text-white hover:bg-orange-400 py-2 px-3 font-semibold'> Cancel</button>
                             </div>
                         </form>
                     </div>

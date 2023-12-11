@@ -17,14 +17,14 @@ const AddAItem = () => {
     // Upload image to host site(imgbb) steps here step::2 make URL
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setBtnLoader(true)
         //Upload image to host site(imgbb) steps here step::3 create formdata  
         const formData = new FormData();
         formData.append('image', data.image[0]);
 
         //Upload image to host site(imgbb) steps here step::4 fetch data via POST method
-        fetch(imageHostingUrl, { method: 'POST', body: formData })
+        await fetch(imageHostingUrl, { method: 'POST', body: formData })
             .then(res => res.json())
             .then(imageRes => {
                 if (imageRes.success) {
@@ -37,7 +37,7 @@ const AddAItem = () => {
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
-                                    title: "Item Added to Menu Successfully",
+                                    title: "Item Added Successfully",
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
