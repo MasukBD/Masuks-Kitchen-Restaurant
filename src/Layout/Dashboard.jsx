@@ -63,7 +63,7 @@ const Dashboard = () => {
                                 <>
                                     <li><NavLink to="/dashboard/userHome" className={({ isActive }) => (isActive ? 'active' : 'default')}><HiHome /> User Home</NavLink></li>
                                     <li><NavLink to="/dashboard/reservation" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaCalendarDays></FaCalendarDays> Reservation</NavLink></li>
-                                    <li><NavLink to="/dashboard/payment" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaWallet></FaWallet> Payment History</NavLink></li>
+                                    <li><NavLink to="/dashboard/orders" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaWallet></FaWallet> Order History</NavLink></li>
                                     <li><NavLink to="/dashboard/myCart" className={({ isActive }) => (isActive ? 'active' : 'default')}><HiShoppingCart /> My Cart</NavLink></li>
                                     <li><NavLink to="/dashboard/addReview" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaClipboardCheck></FaClipboardCheck> Add Review</NavLink></li>
                                     <li><NavLink to="/dashboard/myBookings" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaCalendarCheck></FaCalendarCheck> My Bookings</NavLink></li>

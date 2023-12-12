@@ -49,7 +49,7 @@ const CartItem = () => {
                     <div style={{ fontFamily: 'Domine', }} className='flex items-center flex-wrap md:flex-nowrap justify-between mb-6'>
                         <p className='font-semibold text-lg md:text-xl'>Total Items: <span className='text-orange-500'>{cart?.length}</span></p>
                         <p className='font-semibold text-lg md:text-xl'>Total Price: <span className='text-orange-500'>$ {cart && totalPrice}</span></p>
-                        <Link to=""><button className='bg-orange-500 py-1 px-2 rounded text-white font-semibold'>Pay</button></Link>
+                        <Link to="/dashboard/payment"><button className='bg-orange-500 py-1 px-2 rounded text-white font-semibold'>Pay</button></Link>
                     </div>
                     <div className="overflow-x-auto bg-white my-4">
                         <table className="table">
