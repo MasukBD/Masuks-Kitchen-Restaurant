@@ -72,9 +72,10 @@ const ManageItem = () => {
                         const updatedItemData = { name, price: parseFloat(price), category, recipe, image: imgUrl };
                         axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
                             .then(data => {
-                                if (data.data.modifiedCount) {
-                                    toast.success('Updated Successfully')
+                                if (data.status === 200) {
                                     refetch();
+                                    from.reset();
+                                    toast.success('Updated Successfully');
                                 }
                             })
                     }
@@ -84,15 +85,16 @@ const ManageItem = () => {
             const updatedItemData = { name, price: parseFloat(price), image: editItem?.image, category, recipe };
             axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
                 .then(data => {
-                    if (data.data.modifiedCount) {
-                        toast.success('Updated Successfully');
+                    if (data.status === 200) {
                         refetch();
+                        from.reset();
+                        toast.success('Updated Successfully');
                     }
                 })
         }
     };
 
-    const handleDeleteItemFromMenu = id => {
+    const handleDeleteItemFromMenu = item => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -103,7 +105,7 @@ const ManageItem = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/menu/${id}`)
+                axiosSecure.delete(`/menu/${item._id}`)
                     .then(data => {
                         if (data.data.deletedCount) {
                             refetch();
@@ -171,7 +173,7 @@ const ManageItem = () => {
                                     <td>{item.price}</td>
                                     <td><button title='Edit' onClick={() => handleEditMenuItemButton(item)} className='text-xl text-orange-800 p-2 rounded-full hover:bg-warning'><FaRegEdit></FaRegEdit></button></td>
                                     <th>
-                                        <button title='Delete' onClick={() => { handleDeleteItemFromMenu(item._id) }} className='text-xl p-2 rounded-full  hover:bg-error'><FaTrash></FaTrash></button>
+                                        <button title='Delete' onClick={() => { handleDeleteItemFromMenu(item) }} className='text-xl p-2 rounded-full  hover:bg-error'><FaTrash></FaTrash></button>
                                     </th>
                                 </tr>)
                             }
