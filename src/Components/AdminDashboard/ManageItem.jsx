@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
 import SectionTilte from '../SharedComponent/SectionTilte';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const imageHostingApiKey = import.meta.env.VITE_IMAGE_HOSTING_API_KEY;
 
 const ManageItem = () => {
@@ -16,6 +17,7 @@ const ManageItem = () => {
     const [categoricalItem, setCategoricalItem] = useState([]);
     const [editItem, setEditItem] = useState(null);
     const axiosSecure = useAxiosInterceptor();
+    const navigate = useNavigate();
 
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingApiKey}`;
 
@@ -73,9 +75,10 @@ const ManageItem = () => {
                         axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
                             .then(data => {
                                 if (data.status === 200) {
-                                    refetch();
                                     from.reset();
                                     toast.success('Updated Successfully');
+                                    refetch();
+                                    navigate('/menu');
                                 }
                             })
                     }
@@ -86,9 +89,10 @@ const ManageItem = () => {
             axiosSecure.put(`/menu/${editItem?._id}`, updatedItemData)
                 .then(data => {
                     if (data.status === 200) {
-                        refetch();
                         from.reset();
                         toast.success('Updated Successfully');
+                        refetch();
+                        navigate('/menu');
                     }
                 })
         }
@@ -114,6 +118,7 @@ const ManageItem = () => {
                                 text: "Item has been deleted.",
                                 icon: "success"
                             });
+                            navigate('/menu');
                         }
                     })
             }

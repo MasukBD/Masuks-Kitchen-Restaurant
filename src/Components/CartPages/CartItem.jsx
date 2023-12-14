@@ -10,6 +10,7 @@ const CartItem = () => {
     const [cart, refetch] = useCart();
     const inTotalPrice = cart.reduce((sum, item) => item.price + sum, 0);
     const totalPrice = inTotalPrice.toFixed(2);
+    const token = localStorage.getItem('access-token');
 
     const handleCartItemDelete = id => {
         Swal.fire({
@@ -23,7 +24,10 @@ const CartItem = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/carts/${id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -49,7 +53,7 @@ const CartItem = () => {
                     <div style={{ fontFamily: 'Domine', }} className='flex items-center flex-wrap md:flex-nowrap justify-between mb-6'>
                         <p className='font-semibold text-lg md:text-xl'>Total Items: <span className='text-orange-500'>{cart?.length}</span></p>
                         <p className='font-semibold text-lg md:text-xl'>Total Price: <span className='text-orange-500'>$ {cart && totalPrice}</span></p>
-                        <Link to="/dashboard/payment"><button className='bg-orange-500 py-1 px-2 rounded text-white font-semibold'>Pay</button></Link>
+                        <Link to="/dashboard/payment"><button disabled={cart.length <= 0} className='bg-orange-500 py-1 px-2 rounded text-white font-semibold'>Pay</button></Link>
                     </div>
                     <div className="overflow-x-auto bg-white my-4">
                         <table className="table">

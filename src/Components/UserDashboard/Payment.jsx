@@ -16,11 +16,15 @@ import aex from '../../assets/images/payment/american-express.png';
 import diner from '../../assets/images/payment/diners-club.png';
 import union from '../../assets/images/payment/unionpay.png';
 import discover from '../../assets/images/payment/discover.png';
+import useCart from '../../Hooks/useCart';
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PUBLISH_K);
 
 
 const Payment = () => {
+    const [cart] = useCart();
+    const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+    const price = parseFloat(totalPrice.toFixed(2));
 
     return (
         <>
@@ -36,7 +40,7 @@ const Payment = () => {
                     <div className='p-2 w-11/12 mx-auto mt-6 mb-6 lg:mb-10'>
                         <h3 className='mb-5 text-center font-semibold'>Card Payment</h3>
                         <Elements stripe={stripePromise}>
-                            <PaymentForm></PaymentForm>
+                            <PaymentForm price={price}></PaymentForm>
                         </Elements>
                     </div>
                     <div className='flex items-center gap-2 md:gap-4 justify-center'>
