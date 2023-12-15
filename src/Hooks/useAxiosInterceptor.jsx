@@ -11,6 +11,7 @@ const useAxiosInterceptor = () => {
     const axiosSecure = axios.create({
         baseURL: 'http://localhost:5000',
     });
+
     useEffect(() => {
         // Add a request interceptor  step==1 send request
         axiosSecure.interceptors.request.use((config) => {

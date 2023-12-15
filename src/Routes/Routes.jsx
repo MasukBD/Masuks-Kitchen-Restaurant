@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute";
 import AddAItem from "../Components/AdminDashboard/AddAItem";
 import ManageItem from "../Components/AdminDashboard/ManageItem";
 import Payment from "../Components/UserDashboard/Payment";
+import OrderHistory from "../Components/UserDashboard/OrderHistory";
 
 const router = createBrowserRouter([
     {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/payment",
                 element: <PrivateRoute><Payment></Payment></PrivateRoute>
+            },
+            {
+                path: "/dashboard/orders",
+                element: <PrivateRoute><OrderHistory></OrderHistory></PrivateRoute>
             }
         ]
     }
