@@ -46,35 +46,35 @@ const TopItem = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <img className='' src={slide1} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Pizza</h3></Link>
+                        <img src={slide1} alt="" />
+                        <Link to="/order/pizza"><h3 className='topItem'>Pizza</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide2} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Tacos</h3></Link>
+                        <img src={slide2} alt="" />
+                        <Link to="/order/popular"><h3 className='topItem'>Tacos</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide3} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Stack</h3></Link>
+                        <img src={slide3} alt="" />
+                        <Link to="/order/offered"><h3 className='topItem'>Stack</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide4} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Burger</h3></Link>
+                        <img src={slide4} alt="" />
+                        <Link to="/order/pizza"><h3 className='topItem'>Burger</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide5} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Sandwich</h3></Link>
+                        <img src={slide5} alt="" />
+                        <Link to="/order/popular"><h3 className='topItem'>Sandwich</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide6} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Salad</h3></Link>
+                        <img src={slide6} alt="" />
+                        <Link to="/order/salad"><h3 className='topItem'>Salad</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='' src={slide7} alt="" />
-                        <Link to=""><h3 className='uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white'>Pastie</h3></Link>
+                        <img src={slide7} alt="" />
+                        <Link to="/order/dessert"><h3 className='topItem'>Pastie</h3></Link>
                     </SwiperSlide>
                     <SwiperSlide className='relative'>
-                        <img className='' src={slide1} alt="" />
+                        <img src={slide1} alt="" />
                         <Link to="/menu"><h2 className='text-lg absolute inset-0 text-white md:text-3xl font-semibold flex items-center hover:underline underline-offset-4 hover:text-warning justify-center gap-1'>Explore More <FaArrowRight></FaArrowRight></h2></Link>
                     </SwiperSlide>
                 </Swiper>

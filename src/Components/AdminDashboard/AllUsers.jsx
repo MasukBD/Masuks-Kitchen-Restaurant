@@ -7,9 +7,9 @@ import Swal from 'sweetalert2';
 import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
 
 const AllUsers = () => {
+    const token = localStorage.getItem('access-token')
     // Option 1: use Regular Tanstack/react Query for fetching data using fetch 
     // ----------------------------------------------------------
-    // const token = localStorage.getItem('access-token')
     // const { data: users = [], refetch } = useQuery({
     //     queryKey: ['users'],
     //     queryFn: async () => {
@@ -47,7 +47,8 @@ const AllUsers = () => {
                 fetch(`http://localhost:5000/users/${id}`, {
                     method: "PATCH",
                     headers: {
-                        'content-type': "application/json"
+                        'content-type': "application/json",
+                        authorization: `Berear ${token}`
                     },
                     body: JSON.stringify({ role: 'admin' })
                 })
@@ -78,7 +79,10 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/users/${id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {

@@ -13,3 +13,7 @@ body {
 .default {
     @apply text-white font-semibold hover:bg-orange-400 md:p-2 hover:rounded-md
 }
+
+.topItem {
+    @apply uppercase hover:underline underline-offset-4 hover:text-warning font-serif font-semibold text-center -mt-12 text-xl md:text-2xl text-white
+}
