@@ -43,7 +43,7 @@ const Header = () => {
                             user.photoURL ? <img title={user.displayName} className='w-10 rounded-full m-2 text-center cursor-pointer' src={user.photoURL} alt="" /> : <FaRegUserCircle title={user.displayName} className='text-white text-3xl m-2 text-center cursor-pointer'></FaRegUserCircle>
                         }
                     </label>
-                    <ul className="bg-black bg-opacity-80 dropdown-content mt-2 p-2 md:px-1 z-10 shadow rounded">
+                    <ul className="bg-black bg-opacity-80 dropdown-content p-2 z-10 shadow rounded">
                         <li className='default'><Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
                         <li className='default'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
                     </ul>

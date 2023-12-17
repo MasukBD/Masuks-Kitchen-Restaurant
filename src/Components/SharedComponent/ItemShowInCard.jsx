@@ -35,7 +35,7 @@ const ItemShowInCard = ({ item }) => {
     }
     return (
         <div className='relative shadow-lg flex flex-col text-center shadow-orange-100 border'>
-            <img className='hover:cursor-zoom-in hover:rounded-md hover:scale-125 transition duration-500' src={image} alt="" />
+            <img className='hover:md:cursor-zoom-in hover:md:rounded-md hover:md:scale-125 transition duration-500' src={image} alt="" />
             <h3 className='absolute right-2 top-2 font-semibold text-warning bg-gradient-to-r from-green-600 to-black p-1 rounded-md'>${price}</h3>
             <h2 className='text-2xl font-semibold my-2'>{name}</h2>
             <p className='mb-2'>{recipe}</p>
