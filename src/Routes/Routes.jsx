@@ -12,12 +12,12 @@ import CartItem from "../Components/CartPages/CartItem";
 import Dashboard from "../Layout/Dashboard";
 import UserHome from "../Components/UserDashboard/UserHome";
 import AllUsers from "../Components/AdminDashboard/AllUsers";
-import AdminHome from "../Components/AdminDashboard/adminHome";
 import AdminRoute from "./AdminRoute";
 import AddAItem from "../Components/AdminDashboard/AddAItem";
 import ManageItem from "../Components/AdminDashboard/ManageItem";
 import Payment from "../Components/UserDashboard/Payment";
 import OrderHistory from "../Components/UserDashboard/OrderHistory";
+import HomeAdmin from "../Components/AdminDashboard/HomeAdmin";
 
 const router = createBrowserRouter([
     {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/adminHome',
-                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+                element: <AdminRoute><HomeAdmin></HomeAdmin></AdminRoute>
             },
             {
                 path: '/dashboard/allUsers',

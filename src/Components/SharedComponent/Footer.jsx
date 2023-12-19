@@ -53,7 +53,7 @@ const Footer = () => {
                     <a className="link link-hover">Pricing</a>
                 </nav>
                 <nav>
-                    <header className="footer-title">Subscribe</header>
+                    <header className="footer-title">Get Offer Info</header>
                     <form>
                         <input required type="email" placeholder="Email" className="input input-bordered input-error w-full max-w-xs" />
                         <button className='text-white p-2 bg-yellow-500 rounded-md my-3 font-semibold hover:bg-black'>Submit</button>

@@ -114,7 +114,7 @@ const AllUsers = () => {
                 <div>
                     <div className="input-group">
                         <input onChange={handleSearch} type="email" placeholder="Search by Email" className="input input-bordered" />
-                        <button onClick={handleSearch} className="btn btn-warning">
+                        <button className="btn btn-warning">
                             <FaSearch></FaSearch>
                         </button>
                     </div>
