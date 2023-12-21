@@ -5,7 +5,6 @@ import SectionTilte from '../SharedComponent/SectionTilte';
 import { FaSearch, FaTrashAlt, FaUserCog } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
-import { Authcontext } from '../../Provider/AuthProvider';
 
 const AllUsers = () => {
     const token = localStorage.getItem('access-token');
@@ -69,7 +68,6 @@ const AllUsers = () => {
             }
         });
     }
-
     const handleUserDelete = id => {
         Swal.fire({
             title: "Are you sure?",
@@ -135,7 +133,7 @@ const AllUsers = () => {
                         </thead>
                         <tbody>
                             {users.map((user, index) => <tr className='font-semibold' key={user._id}>
-                                <th>{index + 1}</th>
+                                <td>{index + 1}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role == "admin" ? <span>Admin</span> : <FaUserCog onClick={() => handleUserRole(user._id)} className='text-4xl btn-warning btn-outline rounded-full p-2' />}</td>
