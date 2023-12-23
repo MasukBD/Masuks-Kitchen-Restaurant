@@ -61,8 +61,6 @@ const HomeAdmin = () => {
         }
     });
 
-    console.log(saleStatictis);
-
     return (
         <>
             <h1 className='my-6 font-semibold text-lg md:text-3xl ml-12 md:ml-40 text-orange-500 animate__animated animate__fadeInLeft'>Hello {user?.displayName}, Welcome Back!</h1>

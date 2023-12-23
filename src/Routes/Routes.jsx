@@ -18,6 +18,11 @@ import ManageItem from "../Components/AdminDashboard/ManageItem";
 import Payment from "../Components/UserDashboard/Payment";
 import OrderHistory from "../Components/UserDashboard/OrderHistory";
 import HomeAdmin from "../Components/AdminDashboard/HomeAdmin";
+import ManageOrder from "../Components/AdminDashboard/ManageOrder";
+import ManageBookings from "../Components/AdminDashboard/ManageBookings";
+import AddReview from "../Components/UserDashboard/AddReview";
+import Reservation from "../Components/UserDashboard/Reservation";
+import MyBookings from "../Components/UserDashboard/MyBookings";
 
 const router = createBrowserRouter([
     {
@@ -73,8 +78,20 @@ const router = createBrowserRouter([
                 element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
             },
             {
+                path: '/dashboard/manageOrders',
+                element: <AdminRoute><ManageOrder></ManageOrder></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageBookings',
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
+            },
+            {
                 path: "/dashboard/userHome",
                 element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+            },
+            {
+                path: '/dashboard/reservation',
+                element: <PrivateRoute><Reservation></Reservation></PrivateRoute>
             },
             {
                 path: '/dashboard/myCart',
@@ -87,6 +104,14 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/orders",
                 element: <PrivateRoute><OrderHistory></OrderHistory></PrivateRoute>
+            },
+            {
+                path: "/dashboard/addReview",
+                element: <PrivateRoute><AddReview></AddReview></PrivateRoute>
+            },
+            {
+                path: '/dashboard/myBookings',
+                element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>
             }
         ]
     }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { HiShoppingCart, HiHome, HiMenuAlt1, HiLogout } from "react-icons/hi";
-import { FaCalendarDays, FaWallet, FaCalendarCheck, FaClipboardCheck, FaEnvelope, FaUsers, FaBook, FaUtensils, FaAlignCenter } from "react-icons/fa6";
+import { FaCalendarDays, FaWallet, FaCalendarCheck, FaClipboardCheck, FaEnvelope, FaUsers, FaBook, FaUtensils, FaAlignCenter, FaBraille } from "react-icons/fa6";
 import { Authcontext } from '../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
@@ -56,6 +56,7 @@ const Dashboard = () => {
                                 <li><NavLink to="/dashboard/adminHome" className={({ isActive }) => (isActive ? 'active' : 'default')}><HiHome />Admin Home</NavLink></li>
                                 <li><NavLink to="/dashboard/addItem" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaUtensils></FaUtensils> Add Item</NavLink></li>
                                 <li><NavLink to="/dashboard/manageItems" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaAlignCenter></FaAlignCenter> Manage Items</NavLink></li>
+                                <li><NavLink to="/dashboard/manageOrders" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaBraille></FaBraille> Manage Orders</NavLink></li>
                                 <li><NavLink to="/dashboard/manageBookings" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaBook></FaBook> Manage Bookings</NavLink></li>
                                 <li><NavLink to="/dashboard/allUsers" className={({ isActive }) => (isActive ? 'active' : 'default')}><FaUsers></FaUsers> All Users</NavLink></li>
                             </>

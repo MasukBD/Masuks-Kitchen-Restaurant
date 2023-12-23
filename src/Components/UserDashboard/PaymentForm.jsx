@@ -87,6 +87,7 @@ const PaymentForm = ({ price, cartItem }) => {
             toast.success('Payment Successfull!');
             const orderDetails = {
                 date: moment().format('LLLL'),
+                orderNumber: Math.floor(Math.random() * 10000),
                 customer: user?.displayName,
                 customerEmail: user?.email,
                 billAmount: price,
