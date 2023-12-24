@@ -36,6 +36,12 @@ const Header = () => {
         <li><NavLink to="/order/popular" className={({ isActive }) => (isActive ? 'active' : 'default')}>Order</NavLink></li>
         <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default')}>Contact&nbsp;Us</NavLink></li>
         {
+            user && <>
+                <li className='default lg:hidden'><Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
+                <li className='default lg:hidden'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
+            </>
+        }
+        {
             user ?
                 <li className='dropdown'>
                     <label tabIndex={0}>
@@ -44,8 +50,8 @@ const Header = () => {
                         }
                     </label>
                     <ul className="bg-black bg-opacity-80 dropdown-content p-2 z-10 shadow rounded">
-                        <li className='default'><Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
-                        <li className='default'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
+                        <li className='default hidden lg:block'><Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
+                        <li className='default hidden lg:block'><button className='flex justify-center' onClick={handleLogout}><FaSignOutAlt></FaSignOutAlt><span>LogOut</span></button></li>
                     </ul>
                 </li>
                 :
