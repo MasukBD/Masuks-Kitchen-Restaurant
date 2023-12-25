@@ -27,7 +27,7 @@ const AllUsers = () => {
 
     // Option 2: Use CustomHook(useAxiosInterceptor) made by Axios(Instance & Interceptor) with Tanstack/reactQuery 
     const axiosSecure = useAxiosInterceptor();
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users', searchQuery && searchQuery],
         queryFn: async () => {
             const response = await axiosSecure.get(`/users?search=${searchQuery}`)
@@ -103,6 +103,11 @@ const AllUsers = () => {
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
     };
+
+    if (isLoading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
+    }
+
     return (
         <>
             <Helmet><title>All Users - Dashboard | Masuk's Kitchen Restaurant</title></Helmet>

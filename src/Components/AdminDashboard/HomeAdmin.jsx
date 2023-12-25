@@ -53,13 +53,17 @@ const HomeAdmin = () => {
             })
     }, []);
 
-    const { data: saleStatictis = [], } = useQuery({
+    const { data: saleStatictis = [], isLoading } = useQuery({
         queryKey: ['saleStatictis'],
         queryFn: async () => {
             const res = await axiosSecure.get('/order-stat-by-category')
             return res.data;
         }
     });
+
+    if (isLoading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
+    }
 
     return (
         <>

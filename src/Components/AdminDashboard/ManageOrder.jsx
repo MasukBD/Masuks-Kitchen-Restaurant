@@ -37,7 +37,12 @@ const ManageOrder = () => {
                     refetch();
                 }
             })
-    }
+    };
+
+    if (isLoading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
+    };
+
     return (
         <>
             <Helmet><title>Manage Orders - Masuk's - Kitchen - Restaurant</title></Helmet>

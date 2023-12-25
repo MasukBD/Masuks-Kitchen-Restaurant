@@ -31,13 +31,18 @@ const UserHome = () => {
     const [orders] = useOrders();
     const pendingOrder = orders.filter(order => order.orderStatus === 'Pending');
     const axiosSecure = useAxiosInterceptor();
+
     const { data: orderSummary = [], isLoading } = useQuery({
         queryKey: ['orderSummary', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/order-summary?email=${user?.email}`)
             return res.data;
         }
-    })
+    });
+
+    if (isLoading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
+    };
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionTilte from '../SharedComponent/SectionTilte';
 import HomePageContacts from '../Home/HomeComponent/HomePageContacts';
@@ -8,12 +8,52 @@ import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './style.css';
+import useAxiosInterceptor from '../../Hooks/useAxiosInterceptor';
+import { Authcontext } from '../../Provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Reservation = () => {
     const { register, handleSubmit, setValue, reset, watch, formState: { errors }, control } = useForm();
+    const axiosSecure = useAxiosInterceptor();
+    const { user } = useContext(Authcontext);
+    const navigate = useNavigate();
+
+
     const onSubmit = (data) => {
-        console.log(data)
-        reset()
+        const booking = { name: data.name, phone: data.phoneInputWithCountrySelect, email: data.email, time: data.selectedDate, people: data.people, baby: data.baby ? data.baby : 0, status: 'pending' }
+        axiosSecure.post('/bookings', booking)
+            .then(res => {
+                if (res.data.insertedId) {
+                    reset();
+                    navigate('/dashboard/myBookings');
+                    let timerInterval;
+                    Swal.fire({
+                        title: "Reservation Done!",
+                        html: "Processing in <b></b> milliseconds.",
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                        }
+                    });
+                }
+            })
+
+
+
     }
     return (
         <>
@@ -24,12 +64,12 @@ const Reservation = () => {
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                         <div>
                             <label className='font-semibold'>Name <span className='text-error'>*</span></label><br />
-                            <input className='w-full p-2 rounded-md' placeholder='Enter Your Name' type="text" id="name" {...register("name", { required: true })} />
+                            <input defaultValue={user?.displayName} className='w-full p-2 rounded-md' placeholder='Enter Your Name' type="text" id="name" {...register("name", { required: true })} />
                             {errors.name?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                         </div>
                         <div>
                             <label className='font-semibold'>Email <span className='text-error'>*</span></label><br />
-                            <input className='w-full p-2 rounded-md' placeholder='Enter Your Email' type="email" id="email" {...register("email", { required: true })} />
+                            <input defaultValue={user?.email} className='w-full p-2 rounded-md' placeholder='Enter Your Email' type="email" id="email" {...register("email", { required: true })} />
                             {errors.email?.type === 'required' && <span className='text-sm text-red-500'>This field is required!</span>}
                         </div>
                         <div>
@@ -59,11 +99,13 @@ const Reservation = () => {
                                         rules={{ required: true }}
                                         onChange={(date) => setValue('selectedDate', date)}
                                         showTimeSelect
+                                        minDate={(new Date()).setDate((new Date()).getDate() + 1)}
+                                        maxDate={(new Date()).setDate((new Date()).getDate() + 11)}
                                         minTime={new Date().setHours(12, 0)}
                                         maxTime={new Date().setHours(20, 30)}
                                         dateFormat="MMMM d, yyyy h:mm aa"
                                         timeFormat="HH:mm"
-                                        className='p-2 rounded-md w-[260px]'
+                                        className='p-2 rounded-md w-[250px]'
                                         placeholderText="Select a Date and Time"
                                     />
                                 )}
@@ -77,7 +119,7 @@ const Reservation = () => {
                         </div>
                         <div>
                             <label className='font-semibold'>Baby Seat(if) <span>*</span></label><br />
-                            <input className='w-full p-2 rounded-md' type="number" id="baby" min='1' max='120' />
+                            <input {...register("baby")} className='w-full p-2 rounded-md' type="number" id="baby" min='1' max='120' />
                         </div>
                     </div>
                     <div className='text-center'>

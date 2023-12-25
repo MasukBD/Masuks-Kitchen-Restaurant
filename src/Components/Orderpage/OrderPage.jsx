@@ -4,9 +4,9 @@ import orderImage from '../../assets/images/order-page/order.jpg';
 import { Helmet } from 'react-helmet-async';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import useMenu from '../../Hooks/UseMenu';
 import OrderTab from './OrderTab';
 import { useParams } from 'react-router-dom';
+import useMenu from '../../Hooks/useMenu';
 
 const OrderPage = () => {
     const categories = ['popular', 'offered', 'drinks', 'salad', 'soup', 'pizza', 'dessert'];

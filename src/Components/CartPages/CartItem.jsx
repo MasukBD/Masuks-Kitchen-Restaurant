@@ -7,7 +7,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 
 const CartItem = () => {
-    const [cart, refetch] = useCart();
+    const [cart, refetch, , isLoading] = useCart();
     const inTotalPrice = cart.reduce((sum, item) => item.price + sum, 0);
     const totalPrice = inTotalPrice.toFixed(2);
     const token = localStorage.getItem('access-token');
@@ -42,7 +42,12 @@ const CartItem = () => {
                     })
             }
         });
-    }
+    };
+
+    if (isLoading) {
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
+    };
+
     return (
         <>
             <Helmet><title>My Cart | Masuk's Kitchen Restuarant</title></Helmet>

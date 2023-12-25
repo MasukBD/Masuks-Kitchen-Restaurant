@@ -11,7 +11,7 @@ const Dashboard = () => {
     const { logOut } = useContext(Authcontext);
 
 
-    const [refetch, isAdmin, isLoading] = useAdmin();
+    const [, isAdmin,] = useAdmin();
 
     const handleLogout = () => {
         logOut()

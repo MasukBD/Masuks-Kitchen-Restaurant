@@ -11,7 +11,7 @@ const useCart = () => {
 
     //JWT Clientsite::STEP=2 get the token from localStorage and send it to server via headers
     // Instead of fetch, useState and useEffect Used tanstack/react query here 
-    const { isPending, refetch, isError, data: cart = [], error } = useQuery({
+    const { isPending, refetch, isError, data: cart = [], isLoading } = useQuery({
         queryKey: ['carts', user?.email],
 
         //**This is Regular way to send request with token and fetch data */
@@ -30,7 +30,7 @@ const useCart = () => {
             return res.data;
         },
     })
-    return [cart, refetch, isError];
+    return [cart, refetch, isError, isLoading];
 }
 
 export default useCart;

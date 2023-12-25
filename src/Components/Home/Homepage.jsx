@@ -8,7 +8,7 @@ import ChefRecomended from './HomeComponent/ChefRecomended';
 import Highlighted from './HomeComponent/Highlighted';
 import Reviews from './HomeComponent/Reviews';
 import { Helmet } from 'react-helmet-async';
-import useMenu from '../../Hooks/UseMenu';
+import useMenu from '../../Hooks/useMenu';
 
 const Homepage = () => {
     const [, , , , , , , , loading] = useMenu();

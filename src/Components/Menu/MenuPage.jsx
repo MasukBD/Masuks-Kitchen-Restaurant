@@ -8,13 +8,14 @@ import pizza from '../../assets/images/menu-page/pizza-bg.jpg';
 import salad from '../../assets/images/menu-page/salad-bg.jpg';
 import drink from '../../assets/images/menu-page/juice-bg.jpg';
 import SectionTilte from '../SharedComponent/SectionTilte';
-import useMenu from '../../Hooks/UseMenu';
 import EachMenuCategory from '../SharedComponent/EachMenuCategory';
+import useMenu from '../../Hooks/useMenu';
 
 const MenuPage = () => {
     const [menu, popularItems, offeredItems, drinksItems, saladItems, pizzaItems, soupItems, desertItems, loading] = useMenu();
+
     if (loading) {
-        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 md:w-24 text-warning'></span></p>
+        return <p className="h-screen flex justify-center items-center"><span className='loading loading-spinner w-16 text-warning'></span></p>
     }
     return (
         <>
