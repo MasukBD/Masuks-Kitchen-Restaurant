@@ -9,7 +9,7 @@ const useAxiosInterceptor = () => {
 
     // Create an Axios Instance 
     const axiosSecure = axios.create({
-        baseURL: 'http://localhost:5000',
+        baseURL: 'https://masuk-kitchen-server.vercel.app',
     });
 
     useEffect(() => {

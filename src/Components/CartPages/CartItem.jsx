@@ -23,7 +23,7 @@ const CartItem = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${id}`, {
+                fetch(`https://masuk-kitchen-server.vercel.app/carts/${id}`, {
                     method: "DELETE",
                     headers: {
                         authorization: `Bearer ${token}`

@@ -23,7 +23,7 @@ const Register = () => {
                 const newUser = result.user;
                 const savedUser = { name: data.name, email: data.email };
                 updateProfile(newUser, { displayName: data.name })
-                fetch('http://localhost:5000/users', {
+                fetch('https://masuk-kitchen-server.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'

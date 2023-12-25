@@ -18,7 +18,7 @@ const useCart = () => {
         //**In the down below we use another way to get data by Axios INSTANCE and INTERCEPTOR */
 
         // queryFn: async () => {
-        //     const response = await fetch(`http://localhost:5000/carts?email=${user.email}`, { headers: { authorization: `bearer ${token}` } })
+        //     const response = await fetch(`https://masuk-kitchen-server.vercel.app/carts?email=${user.email}`, { headers: { authorization: `bearer ${token}` } })
         //     return response.json();
         // },
 

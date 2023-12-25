@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionCover from '../SharedComponent/SectionCover';
 import image from '../../assets/images/menu-page/banner.jpg';
-import useMenu from '../../Hooks/UseMenu';
+import useMenu from '../../Hooks/useMenu';
 import { FaRegEdit, FaUtensils } from "react-icons/fa";
 import { FaTrash } from 'react-icons/fa6';
 import Swal from 'sweetalert2';

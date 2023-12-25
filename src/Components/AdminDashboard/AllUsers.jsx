@@ -15,7 +15,7 @@ const AllUsers = () => {
     // const { data: users = [], refetch } = useQuery({
     //     queryKey: ['users'],
     //     queryFn: async () => {
-    //         const response = await fetch('http://localhost:5000/users', {
+    //         const response = await fetch('https://masuk-kitchen-server.vercel.app/users', {
     //             headers: {
     //                 authorization: `bearer ${token}`
     //             }
@@ -46,7 +46,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes, Make Admin!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://masuk-kitchen-server.vercel.app/users/${id}`, {
                     method: "PATCH",
                     headers: {
                         'content-type': "application/json",
@@ -79,7 +79,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://masuk-kitchen-server.vercel.app/users/${id}`, {
                     method: "DELETE",
                     headers: {
                         authorization: `Bearer ${token}`

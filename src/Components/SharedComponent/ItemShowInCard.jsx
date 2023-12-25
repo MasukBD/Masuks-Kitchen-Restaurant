@@ -14,7 +14,7 @@ const ItemShowInCard = ({ item }) => {
     const handleAddToCart = () => {
         if (user && user.email) {
             const orderItem = { foodItemId: _id, foodName: name, foodImg: image, price, email: user.email };
-            fetch('http://localhost:5000/carts', {
+            fetch('https://masuk-kitchen-server.vercel.app/carts', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

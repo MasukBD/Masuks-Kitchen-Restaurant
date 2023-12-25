@@ -6,7 +6,7 @@ const useMenu = () => {
     // const [loading, setLoading] = useState(true);
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/menu')
+    //     fetch('https://masuk-kitchen-server.vercel.app/menu')
     //         .then(res => res.json())
     //         .then(data => {
     //             setLoading(false);
@@ -19,7 +19,7 @@ const useMenu = () => {
     const { data: menu = [], refetch, isLoading: loading } = useQuery({
         queryKey: ['menu'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:5000/menu')
+            const response = await fetch('https://masuk-kitchen-server.vercel.app/menu')
             return response.json();
         }
     })

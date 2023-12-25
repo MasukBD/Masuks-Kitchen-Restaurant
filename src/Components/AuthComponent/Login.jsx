@@ -79,7 +79,7 @@ const Login = () => {
             .then(result => {
                 const newUser = result.user;
                 const savedUser = { name: newUser.displayName, email: newUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://masuk-kitchen-server.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'
