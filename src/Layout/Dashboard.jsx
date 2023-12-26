@@ -29,7 +29,7 @@ const Dashboard = () => {
             <Helmet><title>Dashboard | Masuk's Kitchen Restaurent</title></Helmet>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content">
+                <div className="drawer-content overflow-x-auto">
                     <div className="navbar bg-black bg-opacity-80 lg:hidden px-5">
                         <div className="flex-1">
                             <Link to="/" style={{ fontFamily: 'Domine', }} className="text-white hover:text-warning font-semibold"><p><span className='text-sm'>MASUK'S&nbsp;KITCHEN</span> <br /> <span className='text-lg'>RESTAURANT</span></p></Link>

@@ -117,9 +117,9 @@ const Login = () => {
                             <input className='w-full p-2' required type="password" name="password" placeholder='Please Enter Password' id="password" />
                             <span onClick={handleForgetPassword} className='text-blue-600 text-sm mt-0.5 cursor-pointer'>Forget Password?</span>
                         </div>
-                        <div className='flex gap-5'>
+                        <div className='flex flex-col md:flex-row gap-5'>
                             <div><LoadCanvasTemplate /></div>
-                            <input className='grow p-2' required type="text" name="captcha" placeholder='write here' id="captcha" />
+                            <input className='grow p-2' required type="text" name="captcha" placeholder='write captcha here' id="captcha" />
                         </div>
                         {
                             error && <p className='font-semibold text-red-600'>{error}</p>

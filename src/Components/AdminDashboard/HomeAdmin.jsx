@@ -95,50 +95,54 @@ const HomeAdmin = () => {
                     </div>
                 </Tilt>
             </div>
-            <div className='my-10 flex flex-col gap-7 md:flex-row'>
-                <div className='w-full md:w-2/3 lg:w-1/2'>
-                    <BarChart
-                        width={500}
-                        height={300}
-                        data={saleStatictis}
-                        margin={{
-                            top: 20,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="category" />
-                        <YAxis />
-                        <Bar dataKey="totalSales" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-                            {saleStatictis.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                            ))}
-                        </Bar>
-                    </BarChart>
-                    <p className='md:ml-10 ml-5 my-4 font-semibold'>Figure 1: Simple BarChart Showing Sale Data By Category</p>
-                </div>
-                <div className='w-full md:w-1/3 lg:w-1/2'>
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart width={400} height={400}>
-                            <Legend></Legend>
-                            <Pie
+            <div className='my-10'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-7'>
+                    <div className='mt-5 overflow-x-auto'>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart
+                                width={500}
+                                height={300}
                                 data={saleStatictis}
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={renderCustomizedLabel}
-                                outerRadius={80}
-                                fill="#8884d8"
-                                dataKey="totalItemsSold"
+                                margin={{
+                                    top: 20,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                }}
                             >
-                                {saleStatictis.map((entry, index) => (
-                                    <Cell name={entry.category} key={`cell-${index}`} fill={colors[index % colors.length]} />
-                                ))}
-                            </Pie>
-                        </PieChart>
-                    </ResponsiveContainer>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="category" />
+                                <YAxis />
+                                <Bar dataKey="totalSales" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                    {saleStatictis.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                        <p className='text-center my-4 font-semibold'>Figure 1: Simple BarChart Showing Sale Data By Category</p>
+                    </div>
+                    <div className='overflow-x-auto'>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <PieChart width={400} height={400}>
+                                <Legend></Legend>
+                                <Pie
+                                    data={saleStatictis}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    label={renderCustomizedLabel}
+                                    outerRadius={80}
+                                    fill="#8884d8"
+                                    dataKey="totalItemsSold"
+                                >
+                                    {saleStatictis.map((entry, index) => (
+                                        <Cell name={entry.category} key={`cell-${index}`} fill={colors[index % colors.length]} />
+                                    ))}
+                                </Pie>
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
                 </div>
             </div>
         </>
