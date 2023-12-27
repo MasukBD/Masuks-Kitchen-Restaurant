@@ -36,6 +36,7 @@ Welcome to Masuk's Kitchen Restaurant, a modern and feature-rich restaurant webs
 - Node.js with Express.js
 - MongoDB
 - Firebase (Authentication and Hosting)
+- Json Web Token(JWT for Securing API at server site)
 - Vercel (Server-side Deployment)
 - Tanstack Query
 - React Swiper
