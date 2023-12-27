@@ -6,7 +6,6 @@ import image2 from '../../../assets/images/banner/2.png';
 import image3 from '../../../assets/images/banner/3.png';
 import image4 from '../../../assets/images/banner/4.png';
 import image5 from '../../../assets/images/banner/5.png';
-import image6 from '../../../assets/images/banner/6.png';
 
 const Banner = () => {
     return (
@@ -25,9 +24,6 @@ const Banner = () => {
             </div>
             <div>
                 <img src={image5} />
-            </div>
-            <div>
-                <img src={image6} />
             </div>
         </Carousel>
     );
