@@ -58,9 +58,10 @@ To run the development server, use the following command ```bash npm run dev
 
 This will start the server, and you can view the website at localhost
 
-# Authentication
+## Authentication
 
 Masuk's Kitchen Restaurant uses Firebase for authentication. Users can log in using their email and password or via Google Sign-In.
+
 
 # React Key Libraries
 
@@ -69,7 +70,6 @@ Masuk's Kitchen Restaurant uses Firebase for authentication. Users can log in us
 - **Axios:** Used for making HTTP requests.
 - **Stripe:** Integrated for payment gateway functionality.
 
-# Site Structure
 
 # Site Structure
 
