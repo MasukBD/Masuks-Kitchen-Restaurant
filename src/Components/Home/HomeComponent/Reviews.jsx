@@ -40,7 +40,7 @@ const Reviews = () => {
                     modules={[Autoplay, Pagination, Navigation]}
                 >
                     {
-                        reviews.map(review => <SwiperSlide key={review._id}>
+                        [...reviews].reverse().slice(0, 6).map(review => <SwiperSlide key={review._id}>
                             <div className='text-center flex flex-col justify-center items-center py-5 px-8 md:px-12 space-y-2'>
                                 <Rating
                                     style={{ maxWidth: 180 }}

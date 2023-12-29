@@ -27,7 +27,7 @@ const AddReview = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Submitted Successfully!",
+                        title: "Thank's For Your Feedback!",
                         showConfirmButton: false,
                         timer: 1500
                     });
